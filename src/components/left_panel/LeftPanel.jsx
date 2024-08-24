@@ -11,6 +11,38 @@ export const LeftPanel = () => {
                 <li>jabber</li>
                 <li>flim</li>
                 <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
+                <li>jibber</li>
+                <li>jabber</li>
+                <li>flim</li>
+                <li>flam</li>
             </ul>
         </div>
     );

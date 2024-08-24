@@ -5,4 +5,5 @@
     position: relative;
     top: 10vh;
     background-color: var(--color-bg-main);
+    overflow: scroll;
 }

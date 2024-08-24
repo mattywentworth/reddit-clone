@@ -1,0 +1,89 @@
+.feedTileDiv {
+    /*
+    Should this element be centered somehow below the search bar so that it looks more clean?
+    */
+    width: 80%;
+    margin: 2rem auto; 
+    color: var(--color-text-main);
+    border-top: 1px solid var(--color-border-main);
+    text-align: left;
+}
+
+.feedTileContainer {
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 0.5rem;
+    padding-top: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.feedTileContainer:hover {
+    background-color: var(--color-bg-main-hover);
+}
+
+.feedTileRowOne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subredditName {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-secondary)
+}
+
+.timeSincePost {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.joinButton {
+    width: 3.5rem;
+    height: 2rem;
+    padding: 0;
+    border: 2px solid var(--color-button-blue);
+    background-color: var(--color-button-blue);
+    border-radius: 50px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.joinButton:hover {
+    border: 2px solid var(--color-button-blue-hover);
+    background-color: var(--color-button-blue-hover);
+}
+
+.feedTileRowTwo {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom:0.5rem;
+    font-size: 1.2rem;
+}
+
+.feedTileRowThree {
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-border-main);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+}
+
+.feedTileRowThreeImage {
+    max-width: 100%;
+    max-height: 40vh;
+    margin: 0 auto;
+}
+
+.rowThreeBgTest {
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+}
+
+.feedTileRowFour {
+    display: flex;
+}

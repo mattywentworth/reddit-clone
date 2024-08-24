@@ -1,0 +1,41 @@
+.input {
+    width: 35rem;
+    height: 2.5rem; /* Come up with a more systematic way of making this match the button to the right */
+    font-size: 1rem;
+    border-radius: 3rem;
+    border: none;
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-main);
+    padding-left: 3rem;
+    outline: none;
+    background-image: url('https://www.freeiconspng.com/thumbs/magnifying-glass-icon/magnifying-glass-icon-13.png');
+    background-size: 1.3rem;
+    background-repeat: no-repeat;
+    background-position: 15px 10px;
+}
+
+/* Leaving this commented out in case I want to add it back in - more accessible that way with a focus?
+.input:focus {
+    border: 2px solid var(--color-orange-main);
+}
+*/
+
+.input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.searchButton {
+    /*
+    Remove hover styling
+    Figure out how to position it in a way that is actually centered in the search input
+    Replace with a more appropriate color of icon
+    */
+    background-color: transparent;
+    position: relative;
+    right: 35.5rem;
+
+}
+
+.searchIcon {
+    width: 1rem;
+}
