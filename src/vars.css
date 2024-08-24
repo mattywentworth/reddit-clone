@@ -1,0 +1,14 @@
+:root {
+    --font-size: 16px;
+    --color-orange-main: #FF4500;
+    --color-orange-main-hover: #AE2C00;
+    --color-text-main: #FFFFFF;
+    --color-text-secondary: #B4C7D0;
+    --color-text-tertiary: #748791;
+    --color-bg-main: #0E1113;
+    --color-bg-main-hover: #191C1F;
+    --color-bg-secondary: #000000;
+    --color-bg-tertiary: #293236;
+    --color-bg-tertiary-hover: #333D42;
+    --color-border-main: #3D4142;
+}

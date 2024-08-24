@@ -1,0 +1,17 @@
+.button {
+    color: white;
+    background-color: var(--color-orange-main);
+    border: 2px solid var(--color-orange-main);
+    width: 15rem;
+    border-radius: 3rem;
+    font-size: 1rem;
+}
+
+.button:hover { /* Border has a weird animation effect. Something in App.css or index.css? */
+    background-color: var(--color-orange-main-hover);
+    border: 2px solid var(--color-orange-main-hover);
+}
+
+.button:active {
+    border: 2px solid white; /* Border looks blue. Something in App.css or index.css? */
+}

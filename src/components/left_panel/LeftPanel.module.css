@@ -1,0 +1,8 @@
+.panelContainer {
+    width: 20rem;
+    border-right: 2px solid var(--color-border-main);
+    height: 90vh; /* This isn't correct. Need to figure out if there's a better "programmatic" way to subtract the height of the header*/
+    position: relative;
+    top: 10vh;
+    background-color: var(--color-bg-main);
+}
