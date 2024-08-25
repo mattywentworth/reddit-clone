@@ -28,6 +28,17 @@
     align-items: center;
 }
 
+.subredditContainer {
+    display: flex;
+    align-items: center;
+}
+
+.subredditContainer img {
+    width: 2rem;
+    height: 2rem;
+    padding-right: 0.5rem;
+}
+
 .subredditName {
     font-size: 0.9rem;
     font-weight: 600;
@@ -69,21 +80,65 @@
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(8px);
 }
 
 .feedTileRowThreeImage {
     max-width: 100%;
     max-height: 40vh;
+    display: block;
     margin: 0 auto;
 }
 
-.rowThreeBgTest {
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: blur(8px);
+/* Testing how to blur a background image the way it's done on Reddit */
+.bgTestContainer {
+    width: 100%;
 }
 
+.rowThreeBgTest {
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-border-main);
+    width: 100%;
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+    position: relative;
+}
+
+.test {
+    width: 100%;
+    height: inherit;
+}
+
+.feedTileRowThreeImageTest {
+    max-width: 100%;
+    max-height: 40vh;
+    display: block;
+    margin: auto;
+    z-index: 2;
+    position: relative;
+}
+
+/* End background test blur */
+
 .feedTileRowFour {
+    display: flex;
+    align-items: center;
+    padding-top: 0.5rem;
+}
+
+.voteInfo {
+    background-color: var(--color-bg-tertiary);
+    display: flex;
+}
+
+.commentInfo {
+    background-color: var(--color-bg-tertiary);
+    display: flex;
+}
+
+.shareInfo {
+    background-color: var(--color-bg-tertiary);
     display: flex;
 }
