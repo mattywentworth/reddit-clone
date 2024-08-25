@@ -126,13 +126,83 @@
     display: flex;
     align-items: center;
     padding-top: 0.5rem;
+    font-weight: 700;
+}
+
+.commentInfo, .shareInfo {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 50px;
+    background-color: var(--color-bg-tertiary);
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
 }
 
 .voteInfo {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+    /*padding: 0.5rem 0.75rem;*/
+    border-radius: 50px;
     background-color: var(--color-bg-tertiary);
     display: flex;
+    align-items: center;
+    font-size: 0.75rem;
 }
 
+/*.feedTileRowFour > div:hover {
+    background-color: var(--color-bg-tertiary-hover);
+}*/
+
+.shareInfo:hover, .commentInfo:hover {
+    background-color: var(--color-bg-tertiary-hover);
+}
+
+.feedTileRowFour > div > img {
+    width: 1rem;
+}
+
+.imgLeft {
+    margin-right: 0.5rem;
+}
+
+.imgRight {
+    margin-left: 0.5rem;
+}
+
+.feedTileRowFour > div > p /*.feedTileRowFour > div > img*/ {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.voteInfo {
+    padding: 0;
+}
+
+.voteInfo > img {
+    box-sizing: content-box;
+    padding: 0.5rem;
+    border-radius: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.voteInfo > img:hover {
+    background-color: var(--color-bg-tertiary-hover);
+}
+
+.voteInfo .imgLeft:hover {
+    background-color: green;
+}
+
+.voteInfo .imgRight:hover {
+    background-color: red;
+}
+/*
 .commentInfo {
     background-color: var(--color-bg-tertiary);
     display: flex;
@@ -141,4 +211,4 @@
 .shareInfo {
     background-color: var(--color-bg-tertiary);
     display: flex;
-}
+}*/
