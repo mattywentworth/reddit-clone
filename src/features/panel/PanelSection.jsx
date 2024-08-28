@@ -1,5 +1,6 @@
 import { React } from 'react';
 import styles from './PanelSection.module.css';
+import { PanelTile } from './PanelTile';
 
 export const PanelSection = () => {
     return (
@@ -8,6 +9,7 @@ export const PanelSection = () => {
                 <h5>EXAMPLE</h5>
                 <i class="fa-solid fa-caret-up"></i> {/* Will need to add JS when clicked so that it rotates 180 degrees */}
             </div>
+            <PanelTile />
         </div>
     )
 }

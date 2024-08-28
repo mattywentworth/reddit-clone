@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1rem;
-    padding: 0.5rem 1rem;
+    margin: 0.5rem 1rem 0.25rem 1rem;
+    padding: 0rem 1rem;
     border-radius: 10px;
 }
 
@@ -13,6 +13,7 @@
 
 .rowOne h5 {
     color: var(--color-text-tertiary);
+    font-size: 0.9rem;
     font-weight: 300;
     padding: 0;
     margin: 0;
@@ -20,5 +21,5 @@
 
 .rowOne i {
     color: var(--color-text-main);
-    padding: 0;
+    padding: 0.5rem 0rem;
 }

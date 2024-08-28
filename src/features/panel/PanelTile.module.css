@@ -1,0 +1,26 @@
+.sectionResult {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
+    border-radius: 10px;
+}
+
+.sectionResult:hover {
+    background-color: var(--color-bg-main-hover);
+}
+
+.sectionResult h6 {
+    color: var(--color-text-main);
+    font-size: 0.9rem;
+    font-weight: 300;
+    padding: 0.5rem 0rem;
+    margin: 0;
+}
+
+.sectionResult img {
+    width: 1.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    box-sizing: content-box;
+}
