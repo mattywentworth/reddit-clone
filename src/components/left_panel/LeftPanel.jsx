@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import styles from './LeftPanel.module.css';
 import { PanelSection } from '../../features/panel/PanelSection';
 

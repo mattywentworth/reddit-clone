@@ -1,6 +1,6 @@
-import { React } from 'react';
+import React from 'react';
 import styles from './PanelTile.module.css';
-import { images } from '../../assets/images';
+//import { images } from '../../assets/images';
 
 
 export const PanelTile = () => {

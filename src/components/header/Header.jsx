@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import { Logo } from './Logo';
 import { SearchBar } from '../../features/search/SearchBar';
 import { HeaderButton } from './TBDButton';

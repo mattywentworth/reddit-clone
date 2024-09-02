@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import styles from './Feed.module.css';
 import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';

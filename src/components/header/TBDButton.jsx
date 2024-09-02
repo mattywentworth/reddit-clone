@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './TBDButton.module.css';
 //Does every button need a "type"?
 //How should this be structured? In a Nav element? Just an element in the Header?
@@ -17,5 +17,5 @@ export const HeaderButton = () => {
 
     */}
 
-    return <button id='headerButton' className={styles.button} >Inspire Me Please</button>
+    return <button id='header-button' className={styles.button} >Inspire Me Please</button>
 };

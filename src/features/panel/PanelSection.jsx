@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import styles from './PanelSection.module.css';
 import { PanelTile } from './PanelTile';
 

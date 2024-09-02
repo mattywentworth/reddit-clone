@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';

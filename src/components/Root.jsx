@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from './header/Header';
 import { LeftPanel } from './left_panel/LeftPanel';

@@ -1,9 +1,10 @@
+import React from 'react'
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 //New stuff not in orginal build
-import { Root } from './components/Root';
+import { Root } from './components/Root'
 import { Feed } from './features/feed/Feed';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom';
 
