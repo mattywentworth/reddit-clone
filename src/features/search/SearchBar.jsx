@@ -13,7 +13,9 @@ export const SearchBar = () => {
     
     const dispatch = useDispatch();
 
-    //const [searchTerm, setSearchTerm] = useState('');
+    //const [searchTerm, setSearchTerm] = useState(''); Was going to use useState to temporarily store the search term, but
+    //I think I want to try showing search results in the search bar, which will require updating the search term in state
+    //with each character typed
 
     const searchTermState = useSelector(selectSearchTerm)
 
@@ -25,6 +27,7 @@ export const SearchBar = () => {
         <form>
             <input className={styles.input} onChange={handleSearchChange} value={searchTermState} type="text" id="search-input" name="search" /*</form>value="TBD"*/ placeholder="Search Reddit Clone" minLength="1"></input>
             <button className={styles.searchButton} type="submit"></button> 
+            {/*<i class="fa-solid fa-magnifying-glass"></i>*/}
         </form>
     )
 };
