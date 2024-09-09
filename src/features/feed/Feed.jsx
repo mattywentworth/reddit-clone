@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Feed.module.css';
 import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectFeed, fetchFeedTest } from './feedSlice';
 
 export const Feed = () => {
+    
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(fetchFeedTest());
+    }, [dispatch]);
+
+
+    //const feedResults = useSelector(selectFeed);
+    
     return (
         <div className={styles.feed}>
             <InspirationSection />

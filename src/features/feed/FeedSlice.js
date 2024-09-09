@@ -36,13 +36,14 @@ const myData = (Data) => {
 apiTestThree('https://www.reddit.com/r/popular.json', myData, 'jsonp');
 */
 
-const apiTestFour = () => { //Should consider using the url as an argument so that this function can be reused across the app
+const apiTestFour = async () => { //Should consider using the url as an argument so that this function can be reused across the app
 
     fetch("https://www.reddit.com/r/popular.json")
     .then(r => r.json()).then((r) => {
         
         try{
             return r;
+            //console.log(r);
         } catch (error){console.log(error.message)}
         })
 }
@@ -51,6 +52,15 @@ const fetchFeed = createAsyncThunk(
     'feed/fetchFeed',
     async () => {
         const response = await apiTestFour();
+        //const json = await response.json();
+        //return json;
+        return response;
+    }
+)
+
+export const fetchFeedTest = createAsyncThunk('feed/fetchFeed',
+    async () => {
+        const response = await fetch('https://www.reddit.com/r/popular.json');
         const json = await response.json();
         return json;
     }
@@ -64,12 +74,48 @@ const feedSlice = createSlice({
         isLoading: false,
         hasError: false
     }, //or should it be an array?
-    extraReducers: {
-        [feed.fetchFeed.pending]: (state, action) => {},
-        [feed.fetchFeed.fulfilled]: {},
-        [feed.fetchFeed.rejected]: {}
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.
+            addCase(fetchFeedTest.pending, (state) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(fetchFeedTest.fulfilled, (state, action) => {
+                //state.feedResults = action.payload;
+                state.feedResults.push(action.payload);
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(fetchFeedTest.rejected, (state) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
     }
+    /*extraReducers: {
+        [fetchFeed.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [fetchFeed.fulfilled]: (state, action) => {
+            state.feedResults.push(action.payload); //not sure yet if this is what i want to do
+            state.isLoading = false;
+            state.hasError = false;
+        },
+        [fetchFeed.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        }
+    }*/
 })
 
+export const selectFeed = (state) => {
+    return state.feed.feedResults;
+}
 
-//apiTestFour();
+//export const {fetchFeed.pending, fetchFeed.fulfilled, fetchFeed.rejected} = feedSlice.actions; this is either unnecessary with extraReducers or congured incorrectly
+
+export default feedSlice.reducer;
+
+
+apiTestFour();
