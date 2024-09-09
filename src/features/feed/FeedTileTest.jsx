@@ -3,24 +3,21 @@ import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';
 
-export const FeedTile = ( {feedResult} ) => {
-
-    //const kind = feedResult.kind;
+export const FeedTile = ( {feedResults} ) => {
 
     return (
-        <div className={styles.feedTileDiv} key={feedResult.id}>
+        <div className={styles.feedTileDiv}>
             <div className={styles.feedTileContainer}>
-                {/*<p>{feedResult.author_fullname}</p>*/}
                 <div className={styles.feedTileRowOne}>
                     <div className={styles.subredditContainer}>
                         {/* Placeholder for subreddit icon */}
                         <img src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
-                        <p><span className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • time since post</span></p>
+                        <p><span className={styles.subredditName}>r/subredditname</span><span className={styles.timeSincePost}> • time since post</span></p>
                     </div>
                     
                     <button className={styles.joinButton}>Join</button>
                 </div>
-                <h4 className={styles.feedTileRowTwo}>{`${feedResult.title}`}</h4> {/*Should this be a header element, a p, a div, something else?*/}
+                <h4 className={styles.feedTileRowTwo}>Post Title</h4> {/*Should this be a header element, a p, a div, something else?*/}
                 <div className={styles.feedTileRowThree} style={{backgroundImage: `url(${images.malibuTestWide})`}}>
                     {/*<p>Post Media - text, image, video, etc</p> */}{/* Will need to come up with a programmatic way of handling the type of media*/}
                     <img className={styles.feedTileRowThreeImage} src={images.malibuTestWide}></img>
@@ -39,7 +36,7 @@ export const FeedTile = ( {feedResult} ) => {
                     </div>
                     <div className={styles.commentInfo}>
                         <img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
-                        <p>{`${feedResult.num_comments}`}</p>
+                        <p>comment ct</p>
                     </div>
                     <div className={styles.shareInfo}>
                         <img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>

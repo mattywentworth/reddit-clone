@@ -3,24 +3,35 @@ import styles from './Feed.module.css';
 import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFeed, fetchFeedTest } from './feedSlice';
+import { selectFeed, isLoading, fetchFeed } from './feedSlice';
 
 export const Feed = () => {
     
     const dispatch = useDispatch();
     
+    
+
+
+    const feedResults = useSelector(selectFeed);
+    const isLoadingFeed = useSelector(isLoading);
+
     useEffect(() => {
-        dispatch(fetchFeedTest());
+        dispatch(fetchFeed());
     }, [dispatch]);
 
-
-    //const feedResults = useSelector(selectFeed);
+    //const dataTest = feedResults[0].data.after;
     
+    if (isLoadingFeed) {
+        return <div>Loading feed...</div>;
+    }
+
     return (
         <div className={styles.feed}>
             <InspirationSection />
-            <FeedTile />
+            {feedResults.map(feedResult => <FeedTile feedResult={feedResult.data} />)}
+            {/*  <FeedTile feedResults={feedResults} />*/}
             <h1>This is a test</h1>
+            {feedResults.map((post) => <p>{post.data.subreddit}</p>)}
             <p>The test continues</p>
             <p>and continues some more</p>
             <p>and is over for now.</p>

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const apiTest = async () => {
+/*const apiTest = async () => {
     const feed = await fetch('https://www.reddit.com/r/popular.json');
     const data = await feed.json();
     return data;
@@ -11,6 +11,7 @@ const apiTestTwo = async () => {
     const feed = fetch('https://www.reddit.com/r/popular.json').then(res => res.json()).then(out => out);
     return feed;
 }
+*/
 
 /*const apiTestThree = (path, success, error) => {
     const xhr = new XMLHttpRequest();
@@ -35,7 +36,7 @@ const myData = (Data) => {
 
 apiTestThree('https://www.reddit.com/r/popular.json', myData, 'jsonp');
 */
-
+/*
 const apiTestFour = async () => { //Should consider using the url as an argument so that this function can be reused across the app
 
     fetch("https://www.reddit.com/r/popular.json")
@@ -57,12 +58,14 @@ const fetchFeed = createAsyncThunk(
         return response;
     }
 )
+*/
 
-export const fetchFeedTest = createAsyncThunk('feed/fetchFeed',
+export const fetchFeed = createAsyncThunk('feed/fetchFeed',
     async () => {
         const response = await fetch('https://www.reddit.com/r/popular.json');
         const json = await response.json();
-        return json;
+        const testData = json.data.children;
+        return testData;
     }
 )
 
@@ -70,24 +73,24 @@ export const fetchFeedTest = createAsyncThunk('feed/fetchFeed',
 const feedSlice = createSlice({
     name: 'feed',
     initialState: {
-        feedResults: [],
+        feedResults: [],//[]
         isLoading: false,
         hasError: false
     }, //or should it be an array?
     reducers: {},
     extraReducers: (builder) => {
         builder.
-            addCase(fetchFeedTest.pending, (state) => {
+            addCase(fetchFeed.pending, (state) => {
                 state.isLoading = true;
                 state.hasError = false;
             })
-            .addCase(fetchFeedTest.fulfilled, (state, action) => {
+            .addCase(fetchFeed.fulfilled, (state, action) => {
                 //state.feedResults = action.payload;
-                state.feedResults.push(action.payload);
+                state.feedResults = action.payload //.push(action.payload); Initially I was unnecessarily nesting an array as a single element array in another array
                 state.isLoading = false;
                 state.hasError = false;
             })
-            .addCase(fetchFeedTest.rejected, (state) => {
+            .addCase(fetchFeed.rejected, (state) => {
                 state.isLoading = false;
                 state.hasError = true;
             })
@@ -109,6 +112,10 @@ const feedSlice = createSlice({
     }*/
 })
 
+export const isLoading = (state) => {
+    return state.feed.isLoading;
+}
+
 export const selectFeed = (state) => {
     return state.feed.feedResults;
 }
@@ -118,4 +125,4 @@ export const selectFeed = (state) => {
 export default feedSlice.reducer;
 
 
-apiTestFour();
+//apiTestFour();
