@@ -4,6 +4,10 @@ import { PanelTile } from './PanelTile';
 import { fetchPopularSubs, selectPopularSubs, isLoading } from './panelSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
+//THIS COMPONENT IS OCCASIONALLY CAUSING ISSUES WITH THE POPULATION OF STATE VALUES
+////It seems like something gets messed up in the order of populating state and then rendering the state in this component
+////The popular subs (and the feed) aren't updating their respective arrays with values, and then there is an error on the map method
+
 export const PanelSection = ( {popularSubs} ) => {
     /*
     const dispatch = useDispatch();
