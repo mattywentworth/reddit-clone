@@ -120,6 +120,10 @@ export const selectFeed = (state) => {
     return state.feed.feedResults;
 }
 
+export const selectError = (state) => {
+    return state.feed.hasError;
+}
+
 //export const {fetchFeed.pending, fetchFeed.fulfilled, fetchFeed.rejected} = feedSlice.actions; this is either unnecessary with extraReducers or congured incorrectly
 
 export default feedSlice.reducer;

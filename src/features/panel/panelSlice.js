@@ -12,10 +12,12 @@ export const fetchPopularSubs = createAsyncThunk(
 const panelSlice = createSlice({
     name: 'panel',
     initialState: {
-        popularSubs: [],
-        recentSubs: false,
+        popularSubs: [],//Can change this to ['Popular Subs'] and then use .push to add the fetched value as the second 
+        //element of the array. Then can select the first element of the array to be the title of the panel section
+        recentSubs: false,//Mimic comment above
         isLoading: false,
-        hasError: false
+        hasError: false,
+        test: [1, 2, 3]
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -26,7 +28,7 @@ const panelSlice = createSlice({
         .addCase(fetchPopularSubs.fulfilled, (state, action) => {
             state.popularSubs = action.payload;
             state.isLoading = false;
-            state.hasError = true;
+            state.hasError = false;
         })
         .addCase(fetchPopularSubs.rejected, (state) => {
             state.isLoading = false;
@@ -39,6 +41,10 @@ const panelSlice = createSlice({
 export const selectPopularSubs = (state) => state.panel.popularSubs;
 
 export const isLoading = (state) => state.panel.isLoading;
+
+export const hasError = (state) => state.panel.hasError;
+
+export const selectTest = (state) => state.panel.test;
 
 export default panelSlice.reducer;
 

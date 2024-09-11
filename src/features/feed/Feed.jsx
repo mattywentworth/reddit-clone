@@ -3,7 +3,7 @@ import styles from './Feed.module.css';
 import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFeed, isLoading, fetchFeed } from './feedSlice';
+import { selectFeed, isLoading, fetchFeed, selectError } from './feedSlice';
 
 export const Feed = () => {
     
@@ -14,6 +14,7 @@ export const Feed = () => {
 
     const feedResults = useSelector(selectFeed);
     const isLoadingFeed = useSelector(isLoading);
+    const hasError = useSelector(selectError);
 
     useEffect(() => {
         dispatch(fetchFeed());
@@ -23,6 +24,8 @@ export const Feed = () => {
     
     if (isLoadingFeed) {
         return <div>Loading feed...</div>;
+    } else if (hasError) {
+        return <div>Error loading...</div>;
     }
 
     return (
