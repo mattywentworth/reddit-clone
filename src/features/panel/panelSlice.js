@@ -26,7 +26,7 @@ const panelSlice = createSlice({
             state.hasError = false;
         })
         .addCase(fetchPopularSubs.fulfilled, (state, action) => {
-            state.popularSubs = action.payload;
+            state.popularSubs = ['Popular Subs', action.payload];
             state.isLoading = false;
             state.hasError = false;
         })

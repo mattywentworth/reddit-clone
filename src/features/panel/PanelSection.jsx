@@ -21,14 +21,16 @@ export const PanelSection = ( {popularSubs} ) => {
     }
     */
 
+    const popularSubsArray = popularSubs[1];
+
     return (
         <div>
             {/*<p>{popularSubs[0].data.display_name_prefixed}</p>*/}
             <div className={styles.rowOne}>
-                <h5>EXAMPLE</h5> {/* Need to conditionally come up with a way to select or populate the proper heading name here based on state values? */}
+                <h5>{popularSubs[0]}</h5> {/* Need to conditionally come up with a way to select or populate the proper heading name here based on state values? */}
                 <i class="fa-solid fa-caret-up"></i> {/* Will need to add JS when clicked so that it rotates 180 degrees */}
             </div>
-            {popularSubs.map(popularSub => {
+            {popularSubsArray.map(popularSub => {
                 return <PanelTile popularSub={popularSub} />
             })}
         </div>
