@@ -111,14 +111,18 @@ export const FeedTile = ( {feedResult} ) => {
                         <img className={styles.imgRight} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
                     </div>
                     <div className={styles.commentInfo}>
-                        <img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
+                        {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
+                        <i class="fa-solid fa-comment"></i>
                         <p>{postNumComments}</p>
                     </div>
                     <div className={styles.shareInfo}>
-                        <img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
+                        {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                         <i class="fa-solid fa-share"></i>
                         <p>Share</p>
                     </div>
+                </div>
+                <div className={styles.commentsSection}>
+                    <p>coomments</p>
                 </div>
             </div>
         </div>

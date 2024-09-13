@@ -212,3 +212,7 @@
     background-color: var(--color-bg-tertiary);
     display: flex;
 }*/
+
+.commentsSection {
+    display: none;
+}

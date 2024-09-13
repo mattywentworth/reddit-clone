@@ -19,20 +19,22 @@ const commentsSlice = createSlice({
         addPostUrls: (state, action) => { //I want this to create objects in the commentsByPost state valuewhich will contain
             //the url for each post loaded in the initial post state (***which will be the payload here for this action creator***)
             //Then I will need to have an async thunk(?) that fetches comments on each post and updates the commentsByPost state???
-            action.payload[1].map(post => {
+            action.payload.map(post => {
+                
                 const baseUrl = 'reddit.com';
                 const postUrl = post.data.permalink;
                 const dotJson = '.json';
                 const jsonUrl = baseUrl + postUrl + dotJson;
 
                 state.commentsByPost.push({url: jsonUrl, comments: []});
+                //state.commentsByPost = action.payload;
             })
         }
-    },
-    extraReducers: {}
-})
+    }})//,
+    //extraReducers: {}
+//})
 
-export const addPostUrls = commentsSlice.actions.addPostUrls(); //Not sure if this is correct, haven't checked against Codecad lesson
+export const { addPostUrls } = commentsSlice.actions; //Not sure if this is correct, haven't checked against Codecad lesson
 
 export const selectCommentsByPost = (state) => state.comments.commentsByPost;
 

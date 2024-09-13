@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import searchTermReducer from './features/search/searchTermSlice';
 import feedReducer from './features/feed/feedSlice';
 import panelReducer from './features/panel/panelSlice';
+import commentsReducer from './features/comments/commentsSlice';
 
 export default configureStore({
     reducer: {
         searchTerm: searchTermReducer,
         feed: feedReducer,
-        panel: panelReducer
+        panel: panelReducer,
+        comments: commentsReducer
     }
 });

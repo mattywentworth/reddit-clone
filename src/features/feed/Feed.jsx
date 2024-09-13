@@ -4,6 +4,7 @@ import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectFeed, isLoading, fetchFeed, selectError } from './feedSlice';
+import { addPostUrls } from '../comments/commentsSlice.js';
 
 export const Feed = () => {
     
@@ -18,7 +19,14 @@ export const Feed = () => {
 
     useEffect(() => {
         dispatch(fetchFeed());
+        //dispatch(addPostUrls(feedResults));
     }, [dispatch]);
+
+    
+    //INVESTIGATE!! This is functioning, but do you need to use useEffect? Probably not, but I haven't figured out how to not use it yet.
+    useEffect(() => {
+        dispatch(addPostUrls(feedResults));
+    }, [feedResults]);
 
     //const dataTest = feedResults[0].data.after;
     
