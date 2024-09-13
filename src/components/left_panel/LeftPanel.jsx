@@ -9,8 +9,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 export const LeftPanel = () => {
-    
+    /*
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(fetchPopularSubs());
+    }, [dispatch]);
 
     const popularSubs = useSelector(selectPopularSubs);
     const loadingPopularSubs = useSelector(isLoading);
@@ -21,17 +26,18 @@ export const LeftPanel = () => {
         dispatch(fetchPopularSubs());
     }, [dispatch]);
 
-    if (errorLoading) {
-        <div>Loading...</div>
+    if (loadingPopularSubs) {
+        return <div>Loading...</div>
     } else if (errorLoading) {
-        <div>Error</div>
+        return <div>Error</div>
     }
+    */
 
     return (
         <div className={styles.panelContainer}>
             {/*<p>{test[0]}</p>*/}
             {/*<p>{popularSubs[0].data.display_name_prefixed}</p>*/}
-            <PanelSection popularSubs={popularSubs} />
+            <PanelSection /*popularSubs={popularSubs}*/ />
             {/*<PanelSection />*/}
             <ul>
                 <li>jibber</li>
