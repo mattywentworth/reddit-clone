@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';
-import { selectCommentsByPost } from '../comments/commentsSlice';
-import { useSelector } from 'react-redux';
+import { selectCommentsByPost, addCommentsForEachPost } from '../comments/commentsSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 //To do
 //Add functionality for upvoting and downvoting to impact state and nums presented
@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 
 export const FeedTile = ( {feedResult} ) => {
 
+    const dispatch = useDispatch();
     //Need to store following code in a utility file so this component is cleaner?
 
     const postCreatedUtcInMs = feedResult.created_utc * 1000;
@@ -79,22 +80,35 @@ export const FeedTile = ( {feedResult} ) => {
         postNumComments = `${roundedNumCommentsInThousands}K`;
     }
 
+    
     const commentsByPost = useSelector(selectCommentsByPost);
     //Rethink the work done to update the comments state. What is actually important, and how can it be streamlined? Eg, is it helpful to construct the url and save it in state?
-    const fetchCommentsForPost = async (postId) => {
-        const commentsUrl = commentsByPost[postId].url;
+    const fetchCommentsForPost = async (permalink) => {
+        //const commentsUrl = commentsByPost[postId].url;
+        const length = permalink.length;
+        const lastIndex = length - 1;
+        const poppedPermalink = permalink.substring(0, lastIndex);
+        const commentsUrl = `reddit.com${poppedPermalink}.json`;
+        alert(commentsUrl);
+        //alert(commentsUrl + 'https://www.reddit.com/r/meirl/comments/1fhaiid/meirl.json')
         const response = await fetch(commentsUrl);
         const json = await response.json();
+        //alert(json[0].kind);
         const topLevelCommentsArray = json[1].data.children //This is an array comprised of objects. Within each element, .data.body accesses the text of each top-level comment
         let condensedCommentsArray = [];
         topLevelCommentsArray.map((commentDetails) => {
             topLevelComment = commentDetails.data.body;
             condensedCommentsArray.push(topLevelComment);
         });
-        //dispatch(THEADDCOMMENTSTOOARRAYFUNC(coondensedCommentsArray));
+        alert(condensedCommentsArray);
+        //dispatch(addCommentsForEachPost(condensedCommentsArray));
     }
 
-    const handleCommentIconClick = (e) => {}
+    const handleCommentIconClick = (e) => {
+        //const testTarget = e.target.getAttribute('data-test');
+        alert(e.target.id);
+        fetchCommentsForPost(e.target.id);
+    };
 
     return (
         <div className={styles.feedTileDiv} key={feedResult.id}>
@@ -127,7 +141,7 @@ export const FeedTile = ( {feedResult} ) => {
                         <p>{postUpvotes}</p>
                         <img className={styles.imgRight} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
                     </div>
-                    <div className={styles.commentInfo}>
+                    <div className={styles.commentInfo} onClick={handleCommentIconClick} id={feedResult.permalink}>
                         {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                         <i class="fa-solid fa-comment"></i>
                         <p>{postNumComments}</p>
@@ -138,6 +152,10 @@ export const FeedTile = ( {feedResult} ) => {
                         <p>Share</p>
                     </div>
                 </div>
+                {/*<button onClick={handleCommentIconClick} id={feedResult.permalink}>
+                        <p>test 1</p>
+                        <p>test 2</p>
+            </button>*/}
                 <div className={styles.commentsSection}> {/* Need to create and import a Comments component instead?*/}
                     <p>coomments</p>
                 </div>

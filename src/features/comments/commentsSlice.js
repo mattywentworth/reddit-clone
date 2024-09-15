@@ -70,6 +70,9 @@ const commentsSlice = createSlice({
                 state.commentsByPost.push({[post.data.id]: {url: jsonUrl, comments: []}});
                 //state.commentsByPost = action.payload;
             })
+        },
+        addCommentsForEachPost: (state, action) => {
+            state.commentsByPost.comments = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -91,7 +94,7 @@ const commentsSlice = createSlice({
 })
 //})
 
-export const { addPostUrls } = commentsSlice.actions; //Not sure if this is correct, haven't checked against Codecad lesson
+export const { addPostUrls, addCommentsForEachPost } = commentsSlice.actions; //Not sure if this is correct, haven't checked against Codecad lesson
 
 export const selectCommentsByPost = (state) => state.comments.commentsByPost;
 
