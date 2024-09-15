@@ -28,7 +28,7 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
 
 
     return (
-        <div>
+        <div key='updateThisTest'>
             {/*<p>{popularSubs}</p>*/}
             <div className={styles.rowOne}>
                 <h5>{popularSubs[0]}</h5>

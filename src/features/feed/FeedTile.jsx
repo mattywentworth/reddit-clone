@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';
+import { selectCommentsByPost } from '../comments/commentsSlice';
+import { useSelector } from 'react-redux';
 
 //To do
 //Add functionality for upvoting and downvoting to impact state and nums presented
@@ -77,7 +79,22 @@ export const FeedTile = ( {feedResult} ) => {
         postNumComments = `${roundedNumCommentsInThousands}K`;
     }
 
+    const commentsByPost = useSelector(selectCommentsByPost);
+    //Rethink the work done to update the comments state. What is actually important, and how can it be streamlined? Eg, is it helpful to construct the url and save it in state?
+    const fetchCommentsForPost = async (postId) => {
+        const commentsUrl = commentsByPost[postId].url;
+        const response = await fetch(commentsUrl);
+        const json = await response.json();
+        const topLevelCommentsArray = json[1].data.children //This is an array comprised of objects. Within each element, .data.body accesses the text of each top-level comment
+        let condensedCommentsArray = [];
+        topLevelCommentsArray.map((commentDetails) => {
+            topLevelComment = commentDetails.data.body;
+            condensedCommentsArray.push(topLevelComment);
+        });
+        //dispatch(THEADDCOMMENTSTOOARRAYFUNC(coondensedCommentsArray));
+    }
 
+    const handleCommentIconClick = (e) => {}
 
     return (
         <div className={styles.feedTileDiv} key={feedResult.id}>
@@ -121,7 +138,7 @@ export const FeedTile = ( {feedResult} ) => {
                         <p>Share</p>
                     </div>
                 </div>
-                <div className={styles.commentsSection}>
+                <div className={styles.commentsSection}> {/* Need to create and import a Comments component instead?*/}
                     <p>coomments</p>
                 </div>
             </div>

@@ -9,9 +9,6 @@ import { addPostUrls } from '../comments/commentsSlice.js';
 export const Feed = () => {
     
     const dispatch = useDispatch();
-    
-    
-
 
     const feedResults = useSelector(selectFeed);
     const isLoadingFeed = useSelector(isLoading);
@@ -20,10 +17,14 @@ export const Feed = () => {
     useEffect(() => {
         dispatch(fetchFeed());
         //dispatch(addPostUrls(feedResults));
+        /*if (feedResults) { //This worked until I added the post id to the commentsSlice state
+            dispatch(addPostUrls(feedResults));
+        }*/
     }, [dispatch]);
 
     
     //INVESTIGATE!! This is functioning, but do you need to use useEffect? Probably not, but I haven't figured out how to not use it yet.
+    //Also decided to write the conditional in the first useEffect, and it's not working the way I want it to, so I commented it out and am using the second useEffect again.
     useEffect(() => {
         dispatch(addPostUrls(feedResults));
     }, [feedResults]);
@@ -39,14 +40,7 @@ export const Feed = () => {
     return (
         <div className={styles.feed}>
             <InspirationSection />
-            {feedResults.map(feedResult => <FeedTile feedResult={feedResult.data} />)}
-            {/*  <FeedTile feedResults={feedResults} />*/}
-            <h1>This is a test</h1>
-            {feedResults.map((post) => <p>{post.data.subreddit}</p>)}
-            <p>The test continues</p>
-            <p>and continues some more</p>
-            <p>and is over for now.</p>
-            <button className={styles.testButton}>another test</button>
+            {feedResults.map(feedResult => <FeedTile feedResult={feedResult.data} />)}            
         </div>
     )
 }
