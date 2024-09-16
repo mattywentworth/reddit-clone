@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { selectSearchTerm } from '../search/searchTermSlice';
 
 /*const apiTest = async () => {
     const feed = await fetch('https://www.reddit.com/r/popular.json');
@@ -62,7 +63,7 @@ const fetchFeed = createAsyncThunk(
 
 export const fetchFeed = createAsyncThunk('feed/fetchFeed',
     async () => {
-        const response = await fetch('https://www.reddit.com/r/popular.json');
+        const response = await fetch('https://www.reddit.com/r/climbing.json');
         const json = await response.json();
         const testData = json.data.children;
         return testData;
@@ -123,6 +124,19 @@ export const selectFeed = (state) => {
 export const selectError = (state) => {
     return state.feed.hasError;
 }
+
+
+//const searchTerm = useSelector(selectSearchTerm);
+//const feed = useSelector(selectFeed);
+
+
+export const selectSearchedFeedResults = (state) => {
+    const searchTerm = selectSearchTerm(state);
+    const feedResults = selectFeed(state);
+    
+    return feedResults.filter(feedResult => feedResult.data.title.toLowerCase().includes(searchTerm.toLowerCase()) || feedResult.data.selftext.toLowerCase().includes(searchTerm.toLowerCase()));
+}
+
 
 //export const {fetchFeed.pending, fetchFeed.fulfilled, fetchFeed.rejected} = feedSlice.actions; this is either unnecessary with extraReducers or congured incorrectly
 

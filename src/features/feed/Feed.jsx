@@ -3,8 +3,9 @@ import styles from './Feed.module.css';
 import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFeed, isLoading, fetchFeed, selectError } from './feedSlice';
+import { selectFeed, isLoading, fetchFeed, selectError, selectSearchedFeedResults } from './feedSlice';
 import { addPostUrls } from '../comments/commentsSlice.js';
+import { selectSearchTerm } from '../search/searchTermSlice';
 
 export const Feed = () => {
     
@@ -13,6 +14,8 @@ export const Feed = () => {
     const feedResults = useSelector(selectFeed);
     const isLoadingFeed = useSelector(isLoading);
     const hasError = useSelector(selectError);
+    const searchedFeedResults = useSelector(selectSearchedFeedResults);
+    const searchTerm = useSelector(selectSearchTerm);
 
     useEffect(() => {
         dispatch(fetchFeed());
@@ -40,7 +43,12 @@ export const Feed = () => {
     return (
         <div className={styles.feed}>
             <InspirationSection />
-            {feedResults.map(feedResult => <FeedTile feedResult={feedResult.data} />)}            
+            {/*{feedResults.map(feedResult => <FeedTile feedResult={feedResult.data}/>)}*/}
+            {/* Line below seems to be working well, but should I set it up differently? */}
+            {searchTerm === '' ? feedResults.map(feedResult => <FeedTile feedResult={feedResult.data}/>) : searchedFeedResults.map(searchedFeedResult => <FeedTile feedResult={searchedFeedResult.data} />)}
         </div>
     )
 }
+
+//searchedFeedResults.map(searchedFeedResult => <FeedTile searchedFeedResult={searchedFeedResult.data} />)
+{/*{searchTerm === '' ? feedResults.map(feedResult => <FeedTile feedResult={feedResult.data}/>) : searchedFeedResults.map(searchedFeedResult => <FeedTile searchedFeedResult={searchedFeedResult.data} />}*/}

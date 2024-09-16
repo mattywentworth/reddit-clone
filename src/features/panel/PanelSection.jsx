@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './PanelSection.module.css';
 import { PanelTile } from './PanelTile';
 import { fetchPopularSubs, selectPopularSubs, isLoading } from './panelSlice';
@@ -9,13 +9,25 @@ import { useSelector, useDispatch } from 'react-redux';
 ////The popular subs (and the feed) aren't updating their respective arrays with values, and then there is an error on the map method
 
 export const PanelSection = ( /*{popularSubs}*/ ) => {
-
+    
     const dispatch = useDispatch();
 
 
     const popularSubs = useSelector(selectPopularSubs);
     const popularSubsArray = popularSubs[1];
     const loading = useSelector(isLoading);
+
+
+    const handleCollapseClick = (e) => {
+        const target = document.getElementById('testTargetForCollapse');
+        //const newStyle = arrowUp === 'yes' ? 'none' : 'block';
+        //target.style.display = newStyle;
+        if (target.style.display === 'block') {
+            target.style.display = 'none';
+        } else {
+            target.style.display = 'block';
+        }
+    }
 
     useEffect(() => {
         dispatch(fetchPopularSubs());
@@ -28,15 +40,17 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
 
 
     return (
-        <div key='updateThisTest'>
+        <div key='updateThisTest' id='anotherTest'>
             {/*<p>{popularSubs}</p>*/}
             <div className={styles.rowOne}>
                 <h5>{popularSubs[0]}</h5>
-                <i class="fa-solid fa-caret-up"></i> {/* Will need to add JS when clicked so that it rotates 180 degrees */}
+                <i class="fa-solid fa-caret-up" onClick={handleCollapseClick}></i> {/* Will need to add JS when clicked so that it rotates 180 degrees */}
             </div>
+            <div id="testTargetForCollapse">
             {popularSubsArray.map(popularSub => {
                 return <PanelTile popularSub={popularSub} />
             })}
+            </div>
         </div>
     )
 }

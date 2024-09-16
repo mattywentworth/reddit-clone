@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';
-import { selectCommentsByPost, addCommentsForEachPost } from '../comments/commentsSlice';
+import { selectCommentsByPost, addCommentsForEachPost, fetchComments } from '../comments/commentsSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 //To do
@@ -57,9 +57,9 @@ export const FeedTile = ( {feedResult} ) => {
     const roundedUpvotesInThousands = Math.floor(upvotesInThousands);
 
     let postUpvotes;
-    if (postUpvotes < 1000) {
-        postUpvotes = upvotes;
-    } else if (postUpvotes < 10000) {
+    if (upvotes < 1000) {
+        postUpvotes = `${upvotes}`;
+    } else if (upvotes < 10000) {
         postUpvotes = `${roundedTensUpvotesInThousands}K`;
     } else {
         postUpvotes = `${roundedUpvotesInThousands}K`;
@@ -81,6 +81,7 @@ export const FeedTile = ( {feedResult} ) => {
     }
 
     
+
     const commentsByPost = useSelector(selectCommentsByPost);
     //Rethink the work done to update the comments state. What is actually important, and how can it be streamlined? Eg, is it helpful to construct the url and save it in state?
     const fetchCommentsForPost = async (permalink) => {
@@ -89,7 +90,7 @@ export const FeedTile = ( {feedResult} ) => {
         const lastIndex = length - 1;
         const poppedPermalink = permalink.substring(0, lastIndex);
         const commentsUrl = `reddit.com${poppedPermalink}.json`;
-        alert(commentsUrl);
+        //alert(commentsUrl);
         //alert(commentsUrl + 'https://www.reddit.com/r/meirl/comments/1fhaiid/meirl.json')
         const response = await fetch(commentsUrl);
         const json = await response.json();
@@ -104,10 +105,16 @@ export const FeedTile = ( {feedResult} ) => {
         //dispatch(addCommentsForEachPost(condensedCommentsArray));
     }
 
+    const permalink = feedResult.permalink;
+    const length = permalink.length;
+    const lengthMinusOne = length - 1;
+    const poppedPermalink = feedResult.permalink.substring(0, lengthMinusOne);
+
     const handleCommentIconClick = (e) => {
         //const testTarget = e.target.getAttribute('data-test');
         alert(e.target.id);
-        fetchCommentsForPost(e.target.id);
+        dispatch(fetchComments({id: e.target.id, postUrl: `reddit.com${poppedPermalink}.json`}));
+        //fetchCommentsForPost(e.target.id);
     };
 
     return (
@@ -141,7 +148,7 @@ export const FeedTile = ( {feedResult} ) => {
                         <p>{postUpvotes}</p>
                         <img className={styles.imgRight} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
                     </div>
-                    <div className={styles.commentInfo} onClick={handleCommentIconClick} id={feedResult.permalink}>
+                    <div className={styles.commentInfo} onClick={handleCommentIconClick} id={feedResult.id}>
                         {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                         <i class="fa-solid fa-comment"></i>
                         <p>{postNumComments}</p>
