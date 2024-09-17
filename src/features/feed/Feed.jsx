@@ -34,7 +34,7 @@ export const Feed = () => {
 
     //const dataTest = feedResults[0].data.after;
     
-    if (isLoadingFeed) {
+    if (isLoadingFeed || feedResults.length === 0) {
         return <div>Loading feed...</div>;
     } else if (hasError) {
         return <div>Error loading...</div>;

@@ -26,7 +26,7 @@ const panelSlice = createSlice({
             state.hasError = false;
         })
         .addCase(fetchPopularSubs.fulfilled, (state, action) => {
-            state.popularSubs = ['Popular Subs', action.payload];
+            state.popularSubs = ['Popular Subs', action.payload];//This is probably a sloppy way to do it. Make the initial state an object with first key/value 'name: 'Popular Subs', popularSubs: []'?
             state.isLoading = false;
             state.hasError = false;
         })

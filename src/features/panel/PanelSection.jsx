@@ -19,12 +19,15 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
 
 
     const handleCollapseClick = (e) => {
+        const clickedElement = document.getElementById(e.target.id);
         const target = document.getElementById('testTargetForCollapse');
         //const newStyle = arrowUp === 'yes' ? 'none' : 'block';
         //target.style.display = newStyle;
         if (target.style.display === 'block') {
+            clickedElement.style.transform = 'rotate(180deg)';
             target.style.display = 'none';
         } else {
+            clickedElement.style.transform = 'rotate(0deg)';
             target.style.display = 'block';
         }
     }
@@ -44,7 +47,7 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
             {/*<p>{popularSubs}</p>*/}
             <div className={styles.rowOne}>
                 <h5>{popularSubs[0]}</h5>
-                <i class="fa-solid fa-caret-up" onClick={handleCollapseClick}></i> {/* Will need to add JS when clicked so that it rotates 180 degrees */}
+                <i class="fa-solid fa-caret-up" onClick={handleCollapseClick} id='popSubsArrow'></i> {/* Will need to add JS when clicked so that it rotates 180 degrees */}
             </div>
             <div id="testTargetForCollapse">
             {popularSubsArray.map(popularSub => {
