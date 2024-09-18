@@ -22,4 +22,23 @@
 .rowOne i {
     color: var(--color-text-main);
     padding: 0.5rem 0rem;
+    display: inline-block;
+}
+
+/*
+.arrowUpFlip {
+    transform: rotate(0deg);
+}
+
+.arrowDownFlip {
+    transform: rotate(180deg);
+}
+*/
+
+.arrowUpVisible {
+    display: block;
+}
+
+.arrowDownDisappear {
+    display: none;
 }

@@ -28,9 +28,11 @@ export const Feed = () => {
     
     //INVESTIGATE!! This is functioning, but do you need to use useEffect? Probably not, but I haven't figured out how to not use it yet.
     //Also decided to write the conditional in the first useEffect, and it's not working the way I want it to, so I commented it out and am using the second useEffect again.
+    /*
     useEffect(() => {
         dispatch(addPostUrls(feedResults));
     }, [feedResults]);
+    */
 
     //const dataTest = feedResults[0].data.after;
     
@@ -45,7 +47,7 @@ export const Feed = () => {
             <InspirationSection />
             {/*{feedResults.map(feedResult => <FeedTile feedResult={feedResult.data}/>)}*/}
             {/* Line below seems to be working well, but should I set it up differently? */}
-            {searchTerm === '' ? feedResults.map(feedResult => <FeedTile feedResult={feedResult.data}/>) : searchedFeedResults.map(searchedFeedResult => <FeedTile feedResult={searchedFeedResult.data} />)}
+            {searchTerm === '' ? feedResults.map(feedResult => <FeedTile feedResult={feedResult.data} key={feedResult.data.id}/>) : searchedFeedResults.map(searchedFeedResult => <FeedTile feedResult={searchedFeedResult.data} key={feedResult.data.id} />)}
         </div>
     )
 }

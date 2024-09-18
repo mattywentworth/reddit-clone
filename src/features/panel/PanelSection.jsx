@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export const PanelSection = ( /*{popularSubs}*/ ) => {
     
+    const [arrowUp, setArrowUp] = useState(true);
+
     const dispatch = useDispatch();
 
 
@@ -20,16 +22,17 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
 
     const handleCollapseClick = (e) => {
         const clickedElement = document.getElementById(e.target.id);
-        const target = document.getElementById('testTargetForCollapse');
-        //const newStyle = arrowUp === 'yes' ? 'none' : 'block';
-        //target.style.display = newStyle;
-        if (target.style.display === 'block') {
+        //const target = document.getElementById('testTargetForCollapse');
+        arrowUp ? setArrowUp(false) : setArrowUp(true);
+        //alert(arrowUp);
+        //ISSUE - the way i've written this, you have to click the arrow twice in order for it to start responding to the function
+        /*if (target.style.display === 'block') {
+            //target.style.display = 'none';
             clickedElement.style.transform = 'rotate(180deg)';
-            target.style.display = 'none';
         } else {
             clickedElement.style.transform = 'rotate(0deg)';
-            target.style.display = 'block';
-        }
+            //target.style.display = 'block';
+        }*/
     }
 
     useEffect(() => {
@@ -47,12 +50,12 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
             {/*<p>{popularSubs}</p>*/}
             <div className={styles.rowOne}>
                 <h5>{popularSubs[0]}</h5>
-                <i class="fa-solid fa-caret-up" onClick={handleCollapseClick} id='popSubsArrow'></i> {/* Will need to add JS when clicked so that it rotates 180 degrees */}
+                <i class={arrowUp ? "fa-solid fa-caret-up" : "fa-solid fa-caret-down"} onClick={handleCollapseClick} id='popSubsArrow' className={arrowUp ? styles.arrowUpFlip : styles.arrowDownFlip}></i>
             </div>
-            <div id="testTargetForCollapse">
-            {popularSubsArray.map(popularSub => {
-                return <PanelTile popularSub={popularSub} />
-            })}
+            <div id="testTargetForCollapse" className={arrowUp ? styles.arrowUpVisible : styles.arrowDownDisappear}>
+                {popularSubsArray.map(popularSub => {
+                return <PanelTile popularSub={popularSub} key={popularSub.data.id} />
+                })}
             </div>
         </div>
     )

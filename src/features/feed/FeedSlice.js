@@ -63,9 +63,11 @@ const fetchFeed = createAsyncThunk(
 
 export const fetchFeed = createAsyncThunk('feed/fetchFeed',
     async () => {
-        const response = await fetch('https://www.reddit.com/r/climbing.json');
+        const response = await fetch('https://www.reddit.com/r/popular.json');
+        
         const json = await response.json();
         const testData = json.data.children;
+        //alert(testData);
         return testData;
     }
 )
@@ -76,7 +78,6 @@ const feedSlice = createSlice({
     initialState: {
         feedResults: [],//[]
         isLoading: false,
-        hasError: false
     }, //or should it be an array?
     reducers: {},
     extraReducers: (builder) => {
