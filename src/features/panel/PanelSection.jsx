@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './PanelSection.module.css';
 import { PanelTile } from './PanelTile';
-import { fetchPopularSubs, selectPopularSubs, isLoading } from './panelSlice';
+import { fetchPopularSubs, selectPopularSubs, isLoading, hasError } from './panelSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 //THIS COMPONENT IS OCCASIONALLY CAUSING ISSUES WITH THE POPULATION OF STATE VALUES - NEED TO SEPARATE INTO A DIFFERENT SLICE???
@@ -18,6 +18,7 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
     const popularSubs = useSelector(selectPopularSubs);
     const popularSubsArray = popularSubs[1];
     const loading = useSelector(isLoading);
+    const error = useSelector(hasError);
 
 
     const handleCollapseClick = (e) => {
@@ -42,6 +43,8 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
 
     if (popularSubs.length === 0 || loading) {//Why is popularSubsArray being calculated so slowly that it doesn't render the .map, even though the data is there?
         return <p>Loading...</p>
+    } else if (error) {
+        return <p>Error</p>
     }
 
 

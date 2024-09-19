@@ -62,6 +62,24 @@ const fetchFeed = createAsyncThunk(
 */
 
 export const fetchFeed = createAsyncThunk('feed/fetchFeed',
+    async (subredditFetchUrl) => {
+        //alert(subredditFetchUrl);
+        const response = await fetch(subredditFetchUrl);
+        
+        const json = await response.json();
+        const testData = json.data.children;
+        //alert(JSON.stringify(testData));//Function isn't reaching this point, probably returning an unresolved promise?
+        return testData;
+    }
+)
+
+
+/*
+https://www.reddit.com/r/popular.json
+*/
+
+/*
+export const fetchFeed = createAsyncThunk('feed/fetchFeed',
     async () => {
         const response = await fetch('https://www.reddit.com/r/popular.json');
         
@@ -71,6 +89,7 @@ export const fetchFeed = createAsyncThunk('feed/fetchFeed',
         return testData;
     }
 )
+*/
 
 
 const feedSlice = createSlice({
@@ -78,6 +97,7 @@ const feedSlice = createSlice({
     initialState: {
         feedResults: [],//[]
         isLoading: false,
+        hasError: false
     }, //or should it be an array?
     reducers: {},
     extraReducers: (builder) => {

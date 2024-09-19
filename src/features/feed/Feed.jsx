@@ -16,9 +16,10 @@ export const Feed = () => {
     const hasError = useSelector(selectError);
     const searchedFeedResults = useSelector(selectSearchedFeedResults);
     const searchTerm = useSelector(selectSearchTerm);
+    
 
     useEffect(() => {
-        dispatch(fetchFeed());
+        dispatch(fetchFeed('https://www.reddit.com/r/popular.json'));
         //dispatch(addPostUrls(feedResults));
         /*if (feedResults) { //This worked until I added the post id to the commentsSlice state
             dispatch(addPostUrls(feedResults));
@@ -37,9 +38,11 @@ export const Feed = () => {
     //const dataTest = feedResults[0].data.after;
     
     if (isLoadingFeed || feedResults.length === 0) {
-        return <div>Loading feed...</div>;
+        return <p>Loading feed...</p>;
+    } else if (!feedResults) {
+        return <p>Could not find any data</p>
     } else if (hasError) {
-        return <div>Error loading...</div>;
+        return <p>Error loading...</p>;
     }
 
     return (
@@ -47,7 +50,7 @@ export const Feed = () => {
             <InspirationSection />
             {/*{feedResults.map(feedResult => <FeedTile feedResult={feedResult.data}/>)}*/}
             {/* Line below seems to be working well, but should I set it up differently? */}
-            {searchTerm === '' ? feedResults.map(feedResult => <FeedTile feedResult={feedResult.data} key={feedResult.data.id}/>) : searchedFeedResults.map(searchedFeedResult => <FeedTile feedResult={searchedFeedResult.data} key={feedResult.data.id} />)}
+            {searchTerm === '' ? feedResults.map(feedResult => <FeedTile feedResult={feedResult.data} key={feedResult.data.id}/>) : searchedFeedResults.map(searchedFeedResult => <FeedTile feedResult={searchedFeedResult.data} key={searchedFeedResult.data.id} />)}
         </div>
     )
 }
