@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export const PanelSection = ( /*{popularSubs}*/ ) => {
     
     const [arrowUp, setArrowUp] = useState(true);
+    //const [popularSubsUrls, setPopularSubsUrls] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -20,6 +21,13 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
     const loading = useSelector(isLoading);
     const error = useSelector(hasError);
 
+    /*popularSubs.map(popularSub => {
+        const newArrayElement = {}
+        
+        setPopularSubs([
+            ...popularSubsUrls
+        ])
+    })*/
 
     const handleCollapseClick = (e) => {
         const clickedElement = document.getElementById(e.target.id);
@@ -57,7 +65,7 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
             </div>
             <div id="testTargetForCollapse" className={arrowUp ? styles.arrowUpVisible : styles.arrowDownDisappear}>
                 {popularSubsArray.map(popularSub => {
-                return <PanelTile popularSub={popularSub} key={popularSub.data.id} />
+                return <PanelTile popularSub={popularSub} key={popularSub.data.id} testUrl={`reddit.com/r/NoStupidQuestions.json`} />
                 })}
             </div>
         </div>

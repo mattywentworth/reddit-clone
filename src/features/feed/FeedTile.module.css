@@ -87,6 +87,7 @@
     max-height: 40vh;
     display: block;
     margin: 0 auto;
+    border-radius: 1.25rem;
 }
 
 /* Testing how to blur a background image the way it's done on Reddit */
@@ -229,6 +230,33 @@
     display: flex;
 }*/
 
-.commentsSection {
+.commentsSectionInvisible {
     display: none;
+}
+
+.commentsSectionVisible {
+    
+    position: absolute;
+    top: 5vh;
+    width: 1000px;
+    min-height: 400px;
+    background-color: transparent;
+    backdrop-filter: blur(3px);
+    
+    z-index: 3;
+}
+
+.commentsSection {
+    
+    position: absolute;
+    top: 5vh;
+    left: 25%;
+    right: 25%;
+    /*width: 60vw;*/
+    /*height: 70vh;*/
+    background-color: var(--color-bg-tertiary);
+    opacity: 1;
+    z-index: 4;
+    padding-bottom: 1rem;
+    
 }

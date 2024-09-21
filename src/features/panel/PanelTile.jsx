@@ -2,12 +2,14 @@ import React from 'react';
 import styles from './PanelTile.module.css';
 //import { images } from '../../assets/images';
 import { useDispatch } from 'react-redux';
-import {fetchFeed } from '../feed/FeedSlice';
+import { fetchFeed } from '../feed/FeedSlice';
 
 
-export const PanelTile = ( {popularSub} ) => {
+export const PanelTile = ( {popularSub, testUrl} ) => {
     
     const dispatch = useDispatch();
+
+    //const testAsync = await fetchFeed();
 
     const permalink = popularSub.data.url;
     const lengthMinusOne = permalink.length - 1;
@@ -18,8 +20,8 @@ export const PanelTile = ( {popularSub} ) => {
         const lengthMinusOne = popularSub.data.url.length - 1;
         const poppedUrl = popularSub.data.url.substring(0, lengthMinusOne);
         const subUrl = `reddit.com${poppedUrl}.json`;
-        alert(url);
-        dispatch(fetchFeed(url)); //reddit.com${popularSub.data.url}.json
+        alert(testUrl);
+        dispatch(fetchFeed('reddit.com/r/NoStupidQuestions/.json')); //reddit.com${popularSub.data.url}.json
     }
 
     return (

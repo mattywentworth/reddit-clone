@@ -3,6 +3,7 @@ import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';
 import { selectCommentsByPost, addCommentsForEachPost, fetchComments, addPostUrl } from '../comments/commentsSlice';
+import { fetchFeed } from './FeedSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 //To do
@@ -15,6 +16,7 @@ export const FeedTile = ( {feedResult} ) => {
 
     const [thumbsUpClicked, setThumbsUpClicked] = useState(false);
     const [thumbsDownClicked, setThumbsDownClicked] = useState(false);
+    const [commentsVisible, setCommentsVisible] = useState(false);
 
     const dispatch = useDispatch();
     //Need to store following code in a utility file so this component is cleaner?
@@ -84,18 +86,26 @@ export const FeedTile = ( {feedResult} ) => {
     }
 
     let selectedMedia;
+    const imageStyles = styles.feedTileRowThreeImage;
     if (feedResult.secure_media === null) {
         if(feedResult.thumbnail === 'self') {
             selectedMedia = <p>{feedResult.selftext}</p>;
         } else {
-            selectedMedia = <img src={feedResult.thumbnail} alt={feedResult.title} style={{height: '500px'}}></img>
+            selectedMedia = <img src={feedResult.thumbnail} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
         }
     } else if (feedResult.secure_media.reddit_video) {
-        selectedMedia = <video controls style={{height: '500px'}}><source src={feedResult.secure_media.reddit_video.fallback_url} type='video/mp4'></source></video>
+        selectedMedia = <video controls style={{height: '500px'}} className={imageStyles}><source src={feedResult.secure_media.reddit_video.fallback_url} type='video/mp4'></source></video>
     } else if (feedResult.url) {
-        selectedMedia = <iframe src='https://www.youtube.com/embed/79P5PAacl9s' style={{height: '500px}'}}></iframe>
+        selectedMedia = <iframe src='https://www.youtube.com/embed/79P5PAacl9s' style={{height: '500px}'}} className={imageStyles}></iframe>
     } else {
-        selectedMedia = <p>{feedResult.selftext}</p>;
+        //need to use this to eliminate the parent div that's still taking up space
+    }
+
+    const handleSubredditClick = () => {
+        const subredditExt = feedResult.subreddit_name_prefixed;
+        const subUrl = `reddit.com/${subredditExt}.json`;
+        alert('test');
+        dispatch(fetchFeed('reddit.com/r/NoStupidQuestions/.json')); //reddit.com${popularSub.data.url}.json
     }
 
     const permalink = feedResult.permalink;
@@ -115,6 +125,20 @@ export const FeedTile = ( {feedResult} ) => {
         }, 5000);*/
         //alert(commentsByPost[feedResult.id].postUrl);
         dispatch(fetchComments({postId: feedResult.id, postUrl: commentsByPost[feedResult.id].postUrl})) //
+    }
+
+    const testHandleCommentsVis = () => {
+        //const elementToExpose = document.getElementById(`${feedResult.id}commentSection`);
+        //elementToExpose.style.display === 'none' ? elementToExpose.style.display = 'block' : elementToExpose.style.display = 'none';
+        //alert(commentsVisible);
+        commentsVisible ? setCommentsVisible(false) : setCommentsVisible(true);
+    }
+
+    const testXCommentsSection = (e) => {
+        e.preventDefault();
+        const elementToClose = document.getElementById(`${feedResult.id}commentSection`);
+        //elementToClose.style.display = 'none';
+        setCommentsVisible(false);
     }
 
     /*const commentsByPost = useSelector(selectCommentsByPost);*/
@@ -198,7 +222,7 @@ export const FeedTile = ( {feedResult} ) => {
         <div className={styles.feedTileDiv} key={feedResult.id}>
             <div className={styles.feedTileContainer}>
                 <div className={styles.feedTileRowOne}>
-                    <div className={styles.subredditContainer}>
+                    <div className={styles.subredditContainer} onClick={handleSubredditClick}>
                         {/* Placeholder for subreddit icon */}
                         <img src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
                         <p><span className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • {postTime}</span></p>
@@ -228,7 +252,7 @@ export const FeedTile = ( {feedResult} ) => {
                         <p className={styles.imgRight} id={`${feedResult.id}Down`} onClick={handleThumbDownClick}>👎</p>
                         {/*<img className={styles.imgRight} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                     </div>
-                    <div className={styles.commentInfo} onClick={addPostIdAndFetchComments} id={feedResult.id}>
+                    <div className={styles.commentInfo} onClick={testHandleCommentsVis} id={feedResult.id}>
                         {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                         <i class="fa-solid fa-comment"></i>
                         <p>{postNumComments}</p>
@@ -239,8 +263,18 @@ export const FeedTile = ( {feedResult} ) => {
                         <p>Share</p>
                     </div>
                 </div>
-                <div className={styles.commentsSection}> {/* Need to create and import a Comments component instead?*/}
-                    <p>coomments</p>
+                <div className={commentsVisible ? styles.commentsSectionVisible : styles.commentsSectionInvisible} id={`${feedResult.id}commentSection`}>
+                    <div className={styles.commentsSection} > {/* Need to create and import a Comments component instead?*/}
+                        <button onClick={testXCommentsSection}>❌</button>
+                        <div className={styles.feedTileRowOne}>
+                            <div className={styles.subredditContainer}>
+                                {/* Placeholder for subreddit icon */}
+                                <img src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
+                                <p><span className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • {postTime}</span></p>
+                            </div>
+                        </div>
+                        <p>Post comment goes here.</p>
+                    </div>
                 </div>
             </div>
         </div>
