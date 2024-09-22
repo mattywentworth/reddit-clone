@@ -12,3 +12,22 @@
     color: yellow;
     position: relative;
 }
+
+#feed-error-div {
+    animation: mymove 5s linear infinite;
+}
+
+@keyframes mymove {
+    from {transform: rotate(0deg)
+    }
+    to {transform: rotate(360deg)
+    }
+}
+
+.errorImage {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 400px;
+    width: 400px;
+    margin: 4rem;
+}

@@ -6,7 +6,7 @@
     border-radius: 10px;
 }
 
-.sectionResult:hover {
+.sectionResult:hover, .sectionResult:focus {
     background-color: var(--color-bg-main-hover);
 }
 

@@ -2,14 +2,12 @@ import React from 'react';
 import styles from './PanelTile.module.css';
 //import { images } from '../../assets/images';
 import { useDispatch } from 'react-redux';
-import { fetchFeed } from '../feed/FeedSlice';
+import { fetchFeed } from '../feed/feedSlice';
 
 
 export const PanelTile = ( {popularSub, testUrl} ) => {
     
     const dispatch = useDispatch();
-
-    //const testAsync = await fetchFeed();
 
     const permalink = popularSub.data.url;
     const lengthMinusOne = permalink.length - 1;
@@ -19,9 +17,9 @@ export const PanelTile = ( {popularSub, testUrl} ) => {
     const handleSubredditClick = () => {
         const lengthMinusOne = popularSub.data.url.length - 1;
         const poppedUrl = popularSub.data.url.substring(0, lengthMinusOne);
-        const subUrl = `reddit.com${poppedUrl}.json`;
-        alert(testUrl);
-        dispatch(fetchFeed('reddit.com/r/NoStupidQuestions/.json')); //reddit.com${popularSub.data.url}.json
+        const subUrl = `https://www.reddit.com${poppedUrl}.json`;
+        dispatch(fetchFeed(subUrl));//Is this something that should trigger a change in the url?
+        //I think ideally it would be the name of the sub that's loaded into the Feed component
     }
 
     return (

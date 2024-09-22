@@ -3,7 +3,7 @@ import styles from './Feed.module.css';
 import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFeed, isLoading, fetchFeed, selectError, selectSearchedFeedResults } from './FeedSlice';
+import { selectFeed, isLoading, fetchFeed, selectError, selectSearchedFeedResults } from './feedSlice';
 import { addPostUrls } from '../comments/commentsSlice.js';
 import { selectSearchTerm } from '../search/searchTermSlice';
 
@@ -19,7 +19,7 @@ export const Feed = () => {
     
 
     useEffect(() => {
-        dispatch(fetchFeed('https://www.reddit.com/r/popular.json'));
+        dispatch(fetchFeed('https://www.reddit.com/r/popular.json')); //https://www.reddit.com/r/NoStupidQuestions.json
         //dispatch(addPostUrls(feedResults));
         /*if (feedResults) { //This worked until I added the post id to the commentsSlice state
             dispatch(addPostUrls(feedResults));
@@ -38,7 +38,11 @@ export const Feed = () => {
     //const dataTest = feedResults[0].data.after;
     
     if (isLoadingFeed || feedResults.length === 0) {
-        return <p className={styles.feed}>Loading feed...</p>;
+        return (
+            <div className={styles.feed} id='feed-error-div'>{/* Need to find out why the animation css isn't working */}
+                <img className={styles.errorImage} src='https://cdn.theatlantic.com/thumbor/7ehJ3wB43COlHP49_ZwAefSxS7g=/0x0:2000x1125/960x540/media/img/mt/2020/06/0620_Katie_Reddit_alt3/original.png'></img>
+            </div>
+        )
     } else if (!feedResults) {
         return <p className={styles.feed}>Could not find any data</p>
     } else if (hasError) {

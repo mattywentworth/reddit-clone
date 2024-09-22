@@ -3,7 +3,7 @@ import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';
 import { selectCommentsByPost, addCommentsForEachPost, fetchComments, addPostUrl } from '../comments/commentsSlice';
-import { fetchFeed } from './FeedSlice';
+import { fetchFeed } from './feedSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 //To do
@@ -206,10 +206,8 @@ export const FeedTile = ( {feedResult} ) => {
     
 
     const handleCommentIconClick = (e) => {
-        //const testTarget = e.target.getAttribute('data-test');
-        alert(e.target.id);
-        dispatch(fetchComments({id: e.target.id, postUrl: `reddit.com${poppedPermalink}.json`}));
-        //fetchCommentsForPost(e.target.id);
+        dispatch(fetchComments({postId: e.target.id, postUrl: `https://www.reddit.com${poppedPermalink}.json`}));
+        testHandleCommentsVis();
     };
 
     //INVESTIGATE - Is this useEffect necessary? I haven't figured out a good alternate way to time the fetchComment dispatches so that the comment id is actually available to the fetchComments func
@@ -252,7 +250,7 @@ export const FeedTile = ( {feedResult} ) => {
                         <p className={styles.imgRight} id={`${feedResult.id}Down`} onClick={handleThumbDownClick}>👎</p>
                         {/*<img className={styles.imgRight} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                     </div>
-                    <div className={styles.commentInfo} onClick={testHandleCommentsVis} id={feedResult.id}>
+                    <div className={styles.commentInfo} onClick={handleCommentIconClick} id={feedResult.id}>{/* onClick={handleCommentIconClick}   onClick={testHandleCommentsVis} */}
                         {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                         <i class="fa-solid fa-comment"></i>
                         <p>{postNumComments}</p>

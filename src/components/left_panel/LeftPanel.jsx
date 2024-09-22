@@ -39,12 +39,6 @@ export const LeftPanel = () => {
             {/*<p>{popularSubs[0].data.display_name_prefixed}</p>*/}
             <PanelSection /*popularSubs={popularSubs}*/ />
             {/*<PanelSection />*/}
-            <ul>
-                <li>jibber</li>
-                <li>jabber</li>
-                <li>flim</li>
-                <li>flam</li>
-            </ul>
         </div>
     );
 };

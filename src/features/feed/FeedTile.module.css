@@ -264,4 +264,10 @@
     border: none;
     position: relative;
     float: right;
+    border-radius: 20px;
 }
+
+.closeButton:active, .closeButton:focus {
+    outline: 2px solid var(--color-orange-main);
+}
+

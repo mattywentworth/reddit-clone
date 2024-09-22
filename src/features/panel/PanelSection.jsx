@@ -29,19 +29,8 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
         ])
     })*/
 
-    const handleCollapseClick = (e) => {
-        const clickedElement = document.getElementById(e.target.id);
-        //const target = document.getElementById('testTargetForCollapse');
+    const handleCollapseClick = (e) => { 
         arrowUp ? setArrowUp(false) : setArrowUp(true);
-        //alert(arrowUp);
-        //ISSUE - the way i've written this, you have to click the arrow twice in order for it to start responding to the function
-        /*if (target.style.display === 'block') {
-            //target.style.display = 'none';
-            clickedElement.style.transform = 'rotate(180deg)';
-        } else {
-            clickedElement.style.transform = 'rotate(0deg)';
-            //target.style.display = 'block';
-        }*/
     }
 
     useEffect(() => {
@@ -50,18 +39,22 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
 
 
     if (popularSubs.length === 0 || loading) {//Why is popularSubsArray being calculated so slowly that it doesn't render the .map, even though the data is there?
-        return <p>Loading...</p>
+        return (
+            <div className={styles.panelLoading}>
+                <img src='https://cdn.theatlantic.com/thumbor/7ehJ3wB43COlHP49_ZwAefSxS7g=/0x0:2000x1125/960x540/media/img/mt/2020/06/0620_Katie_Reddit_alt3/original.png'></img>
+            </div>
+        )
     } else if (error) {
         return <p>Error</p>
     }
 
 
     return (
-        <div key='updateThisTest' id='anotherTest'>
+        <div key='updateThisTest' id='anotherTest' >
             {/*<p>{popularSubs}</p>*/}
-            <div className={styles.rowOne}>
+            <div className={styles.rowOne} onClick={handleCollapseClick}>
                 <h5>{popularSubs[0]}</h5>
-                <i class={arrowUp ? "fa-solid fa-caret-up" : "fa-solid fa-caret-down"} onClick={handleCollapseClick} id='popSubsArrow' className={arrowUp ? styles.arrowUpFlip : styles.arrowDownFlip}></i>
+                <i class={arrowUp ? "fa-solid fa-caret-up" : "fa-solid fa-caret-down"}  id='popSubsArrow' className={arrowUp ? styles.arrowUpFlip : styles.arrowDownFlip}></i>
             </div>
             <div id="testTargetForCollapse" className={arrowUp ? styles.arrowUpVisible : styles.arrowDownDisappear}>
                 {popularSubsArray.map(popularSub => {
