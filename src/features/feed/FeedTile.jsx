@@ -210,7 +210,9 @@ export const FeedTile = ( {feedResult} ) => {
         testHandleCommentsVis();
     };
 
-    //INVESTIGATE - Is this useEffect necessary? I haven't figured out a good alternate way to time the fetchComment dispatches so that the comment id is actually available to the fetchComments func
+    //INVESTIGATE - Is this useEffect necessary? I haven't figured out a good alternate way to time the fetchComment dispatches
+    //so that the comment id is actually available to the fetchComments func.
+    //Does dispatch operate async? So can i have 2 async dispatch funcs in a row and have them execute in order?
     useEffect(() => {
         dispatch(addPostUrl({postId: feedResult.id, postPermalink: feedResult.permalink}));
     }, [dispatch]);

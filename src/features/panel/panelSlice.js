@@ -17,7 +17,7 @@ const panelSlice = createSlice({
         recentSubs: false,//Mimic comment above
         isLoading: false,
         hasError: false,
-        test: [1, 2, 3]
+        test: [1, 2, 3] //Delete this eventually
     },
     reducers: {},
     extraReducers: (builder) => {

@@ -23,7 +23,7 @@ export const PanelTile = ( {popularSub, testUrl} ) => {
     }
 
     return (
-        <div onClick={handleSubredditClick}>
+        <div onClick={handleSubredditClick}> {/* Need to incorporate a way for the clicked subreddit tile to mimic :hover styling */}
             <div className={styles.sectionResult}>
                 <img src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png' ></img>
                 <h6>{popularSub.data.display_name_prefixed}</h6>
