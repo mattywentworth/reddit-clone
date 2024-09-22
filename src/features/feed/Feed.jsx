@@ -3,7 +3,7 @@ import styles from './Feed.module.css';
 import { FeedTile } from './FeedTile';
 import { InspirationSection } from '../inspiration/InspirationSection';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFeed, isLoading, fetchFeed, selectError, selectSearchedFeedResults } from './feedSlice';
+import { selectFeed, isLoading, fetchFeed, selectError, selectSearchedFeedResults } from './FeedSlice';
 import { addPostUrls } from '../comments/commentsSlice.js';
 import { selectSearchTerm } from '../search/searchTermSlice';
 
@@ -38,11 +38,11 @@ export const Feed = () => {
     //const dataTest = feedResults[0].data.after;
     
     if (isLoadingFeed || feedResults.length === 0) {
-        return <p>Loading feed...</p>;
+        return <p className={styles.feed}>Loading feed...</p>;
     } else if (!feedResults) {
-        return <p>Could not find any data</p>
+        return <p className={styles.feed}>Could not find any data</p>
     } else if (hasError) {
-        return <p>Error loading...</p>;
+        return <p className={styles.feed}>Error fetching posts. This is probably gonna take a while...</p>;
     }
 
     return (
