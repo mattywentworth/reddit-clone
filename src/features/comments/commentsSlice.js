@@ -38,26 +38,16 @@ New process:
 export const fetchComments = createAsyncThunk(
     'comments/fetchComments',
     async ({postId, postUrl} /*{ fulfillWithValue }*/) => {
-        //alert(idAndCommentsObj.id + idAndCommentsObj.comments + idAndCommentsObj.postUrl);
-        //alert(postId + postUrl);
-        //const testPostUrl = idAndCommentsObj.postUrl;
-        //alert(testPostUrl);
         const response = await fetch(postUrl);
-        //alert(JSON.stringify(response));
         const json = await response.json();
-        //alert(json); //THIS alert isn't firing properly, so there's some issue with the json const and process in the line above it
-        alert(json[0].kind);
-        //const topLevelComments = json[1].data.children.data.subreddit_id;
-        //alert(topLevelComments);
-        //return {id: postId, comments: topLevelComments};
-        //const commentsArray = json[1].data.children;
-        //return commentsArray;
-        //commentsByPostState.map((post) => {
+        const hugeCommentsArray = json[1].data.children;
+        //alert(json[1].data.children[0].data.body);
         const testObject = {
             postIdTest: postId,
-            comments: json[1].data.children
+            comments: hugeCommentsArray //rouote to coomments array: json[1].data.children.data.replies.data.children
         };
-        //alert(testObject.postIdTest + postUrl + 'test');
+        //alert(testObject.postIdTest);
+        //alert(testObject.comments);
         return testObject;
         })
         
@@ -114,7 +104,7 @@ const commentsSlice = createSlice({
             //action.payload.map(())
             const id = action.payload.postIdTest;
             const comments = action.payload.comments;
-            state.commentsByPost[id].comments = comments;
+            state.commentsByPost[id] = comments; {/*}.comments*/}
             state.isLoading = false;
             state.hasError = false;
         })

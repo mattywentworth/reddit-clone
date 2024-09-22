@@ -25,7 +25,7 @@ export const SearchBar = () => {
     
     return (
         <form>
-            <input className={styles.input} onChange={handleSearchChange} value={searchTermState} type="text" id="search-input" name="search" /*</form>value="TBD"*/ placeholder="Search Reddit Clone" minLength="1"></input>
+            <input className={styles.input} onChange={handleSearchChange} value={searchTermState} type="text" id="search-input" name="search" /*</form>value="TBD"*/ placeholder="Search The Feed" minLength="1"></input>
             <button className={styles.searchButton} type="submit" aria-label="Search"></button> 
             {/*<i class="fa-solid fa-magnifying-glass"></i>*/}
         </form>

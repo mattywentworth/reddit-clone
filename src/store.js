@@ -4,6 +4,7 @@ import feedReducer from './features/feed/feedSlice';
 import panelReducer from './features/panel/panelSlice';
 import commentsReducer from './features/comments/commentsSlice';
 import favoritesReducer from './features/favorites/favoritesSlice';
+import subIconsReducer from './features/sub_icons/subIconsSlice';
 
 export default configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
         feed: feedReducer,
         panel: panelReducer,
         comments: commentsReducer,
-        favorites: favoritesReducer
+        favorites: favoritesReducer,
+        subIcons: subIconsReducer
     }
 });
