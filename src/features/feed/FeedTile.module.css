@@ -143,6 +143,9 @@
     font-size: 0.75rem;
 }
 
+.shareInfo, .joinButton {
+    cursor: not-allowed;
+}
 
 .voteInfo {
     margin-top: 0.5rem;
@@ -262,6 +265,7 @@
 
 .commentsSectionTopRow {
     display: flex;
+    justify-content: space-between;
     position: sticky;
     top: 0;
     background-color: var(--color-bg-main-hover);
@@ -281,6 +285,22 @@
 
 .closeButton:active, .closeButton:focus {
     outline: 2px solid var(--color-orange-main);
+}
+
+.commentTopRow {
+    display: flex;
+    /*justify-content: space-between;*/
+    align-items: center;
+}
+
+.commentsLoading {
+    color: var(--color-orange-main);
+}
+
+.commentText {
+    margin-top: 0;
+    margin-bottom: 1.3rem;
+    padding-left: 2rem;
 }
 
 .userIcon {

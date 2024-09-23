@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './FeedTile.module.css';
 //For testing what images of different sizes will look like and writing corresponding css
 import { images } from '../../assets/images';
-import { selectCommentsByPost, addCommentsForEachPost, fetchComments, addPostUrl } from '../comments/commentsSlice';
+import { selectCommentsByPost, addCommentsForEachPost, fetchComments, addPostUrl, selectIsLoading } from '../comments/commentsSlice';
 import { fetchFeed } from './feedSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { CommentsTile} from '../comments/CommentsTile';
@@ -55,6 +55,8 @@ export const FeedTile = ( {feedResult} ) => {
             postTime = `${elapsedTimeInYears} years ago`;
         }
     };
+
+    
 
 
     const upvotes = feedResult.ups;
@@ -115,8 +117,45 @@ export const FeedTile = ( {feedResult} ) => {
     const poppedPermalink = feedResult.permalink.substring(0, lengthMinusOne);
 
     const commentsByPost = useSelector(selectCommentsByPost);
-    const commentsForThisPost = commentsByPost[feedResult.id]; //NEEDS TO BE FIXED
+    const commentsForThisPost = commentsByPost[feedResult.id];
+    const loadingComments = useSelector(selectIsLoading);
+/*
+    if (commentsForThisPost) {
+    const commentCreatedUtcInMs = commentsForThisPost.createdTime * 1000;
+    //const currentDate = Date.now();
+    const elapsedTimeInMsComm = currentDate - commentCreatedUtcInMs;
+    const elapsedTimeInMinutesComm = Math.floor(elapsedTimeInMsComm / (1000 * 60));
+    const elapsedTimeInHoursComm = Math.floor(elapsedTimeInMinutes / 60);
+    const elapsedTimeInDaysComm = Math.floor(elapsedTimeInHours / 24);
+    const elapsedTimeInMonthsComm = Math.floor(elapsedTimeInDays / 30);
+    const elapsedTimeInYearsComm = Math.floor(elapsedTimeInDays / 365);
 
+    let commentTime;
+    if (elapsedTimeInMinutesComm < 60) {
+        commentTime = `${elapsedTimeInMinutesComm} min. ago`;
+    } else if (elapsedTimeInHoursComm < 24 ) {
+        commentTime = `${elapsedTimeInHoursComm} hr. ago`;
+    } else if (elapsedTimeInDaysComm < 30) {
+        if (elapsedTimeInDaysComm === 1) {
+            commentTime = `${elapsedTimeInDaysComm} day ago`;
+        } else {
+            commentTime = `${elapsedTimeInDaysComm} days ago`;
+        }
+    } else if (elapsedTimeInMonthsComm < 12) {
+        if (elapsedTimeInMonthsComm === 1) {
+            commentTime = `${elapsedTimeInMonthsComm} mo. ago`;
+        } else {
+            commentTime = `${elapsedTimeInMonthsComm} mos. ago`;
+        }
+    } else {
+        if ( elapsedTimeInYearsComm === 1) {
+            commentTime = `${elapsedTimeInYearsComm} year ago`;
+        } else {
+            commentTime = `${elapsedTimeInYearsComm} years ago`;
+        }
+    };
+}
+*/
     //func to add post ids to panelslice before adding comments to each id
    /*const addPostIdAndFetchComments = () => {   
     //dispatch(addPostUrl({postId: feedResult.id, postPermalink: feedResult.permalink}));
@@ -274,25 +313,24 @@ export const FeedTile = ( {feedResult} ) => {
                         <button onClick={testXCommentsSection} className={styles.closeButton}>❌</button>
                     </div>
                     
-                    <div className={styles.feedTileRowOne}>
+                    {/*<div className={styles.feedTileRowOne}>
                         <div className={styles.subredditContainer}>
-                            {/* Placeholder for subreddit icon */}
                             <img src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
                             <p><span className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • {postTime}</span></p>
                         </div>
-                    </div>
+                    </div>*/}
+                    {loadingComments ? <p className={styles.commentsLoading}>Loading comments...</p> : <div></div>}
                     {commentsForThisPost ? commentsForThisPost.map((comment) => {
                         return (
-                            <div>
-                                <div className={styles.feedTileRowOne}>
+                            <div className={styles.commentContainer}>
+                                <div className={styles.commentTopRow}>
                                     <img className={styles.userIcon} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
-                                    <p><span className={styles.userName}>{comment.author}</span><span>{comment.createdTime}</span></p>
+                                    <p><span className={styles.userName}>{comment.author}</span><span className={styles.timeSincePost}> • *Need to fix time calculation* {/*{commentTime}*/}</span></p>
                                 </div>
-                                <p>{comment.comment}</p>
+                                <p className={styles.commentText}>{comment.comment}</p>
                             </div>
                         )
                     }) : <div></div>}
-                    <p>Post comment goes here.</p>
                 </div>
             </div>
             {/*{commentsForThisPost ? <CommentsTile className={commentsVisible ? styles.commentsSectionVisible : styles.commentsSectionInvisible} id={`${feedResult.id}commentSection`} feedResult={feedResult} comments={commentsForThisPost} commentsVisible={commentsVisible} /> : <div></div>}*/}

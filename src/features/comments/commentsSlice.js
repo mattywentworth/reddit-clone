@@ -126,10 +126,16 @@ const commentsSlice = createSlice({
             //const id = action.payload.postIdTest;
             //const idString = id.toString();
             //const comments = action.payload.comments;
-            const test = '3xy57';
+            //const test = '3xy57';
             const {postId, comments} = action.payload;
             //state.commentsByPost[idString] = comments; {/*}.comments*/}
             state.commentsByPost[postId] = comments; //action.payload.comments;
+            /*
+            state.commentsByPost[postId] = {
+                comments: comments,
+                isLoading: false
+            } comments;
+            */
             state.isLoading = false;
             state.hasError = false;
         })
