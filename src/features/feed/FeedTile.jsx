@@ -5,6 +5,7 @@ import { images } from '../../assets/images';
 import { selectCommentsByPost, addCommentsForEachPost, fetchComments, addPostUrl } from '../comments/commentsSlice';
 import { fetchFeed } from './feedSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { CommentsTile} from '../comments/CommentsTile';
 
 //To do
 //Add functionality for upvoting and downvoting to impact state and nums presented
@@ -114,9 +115,10 @@ export const FeedTile = ( {feedResult} ) => {
     const poppedPermalink = feedResult.permalink.substring(0, lengthMinusOne);
 
     const commentsByPost = useSelector(selectCommentsByPost);
+    const commentsForThisPost = commentsByPost[feedResult.id]; //NEEDS TO BE FIXED
 
     //func to add post ids to panelslice before adding comments to each id
-   const addPostIdAndFetchComments = () => {   
+   /*const addPostIdAndFetchComments = () => {   
     //dispatch(addPostUrl({postId: feedResult.id, postPermalink: feedResult.permalink}));
         //setTimeout(()=> alert(commentsByPost[feedResult.id].postUrl), 5000); //this properly displayed the url added to state
         //alert(`reddit.com${poppedPermalink}.json`);
@@ -124,8 +126,8 @@ export const FeedTile = ( {feedResult} ) => {
             dispatch(fetchComments({postId: feedResult.id, postUrl: `reddit.com${permalink}.json`}))
         }, 5000);*/
         //alert(commentsByPost[feedResult.id].postUrl);
-        dispatch(fetchComments({postId: feedResult.id, postUrl: commentsByPost[feedResult.id].postUrl})) //
-    }
+        /*dispatch(fetchComments({postId: feedResult.id, postUrl: commentsByPost[feedResult.id].postUrl}))
+    }*/
 
     const testHandleCommentsVis = () => {
         //const elementToExpose = document.getElementById(`${feedResult.id}commentSection`);
@@ -143,7 +145,7 @@ export const FeedTile = ( {feedResult} ) => {
 
     /*const commentsByPost = useSelector(selectCommentsByPost);*/
     //Rethink the work done to update the comments state. What is actually important, and how can it be streamlined? Eg, is it helpful to construct the url and save it in state?
-    const fetchCommentsForPost = async (permalink) => {
+    /*const fetchCommentsForPost = async (permalink) => {
         //const commentsUrl = commentsByPost[postId].url;
         const length = permalink.length;
         const lastIndex = length - 1;
@@ -162,7 +164,7 @@ export const FeedTile = ( {feedResult} ) => {
         });
         alert(condensedCommentsArray);
         //dispatch(addCommentsForEachPost(condensedCommentsArray));
-    }
+    }*/
 
     //Due to the effort needed to manipulate state values, I'm choosing not to have the thumb clicks impact the actual upvote count
     const handleThumbUpClick = (e) => {
@@ -267,7 +269,11 @@ export const FeedTile = ( {feedResult} ) => {
             </div>
             <div className={commentsVisible ? styles.commentsSectionVisible : styles.commentsSectionInvisible} id={`${feedResult.id}commentSection`}>
                 <div className={styles.commentsSection} > {/* Need to create and import a Comments component instead? YES, and this will enable you to have the proper loading/error renders*/}
-                    <button onClick={testXCommentsSection} className={styles.closeButton}>❌</button>
+                    <div className={styles.commentsSectionTopRow}>
+                        <p>{feedResult.title}</p>
+                        <button onClick={testXCommentsSection} className={styles.closeButton}>❌</button>
+                    </div>
+                    
                     <div className={styles.feedTileRowOne}>
                         <div className={styles.subredditContainer}>
                             {/* Placeholder for subreddit icon */}
@@ -275,9 +281,21 @@ export const FeedTile = ( {feedResult} ) => {
                             <p><span className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • {postTime}</span></p>
                         </div>
                     </div>
+                    {commentsForThisPost ? commentsForThisPost.map((comment) => {
+                        return (
+                            <div>
+                                <div className={styles.feedTileRowOne}>
+                                    <img className={styles.userIcon} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
+                                    <p><span className={styles.userName}>{comment.author}</span><span>{comment.createdTime}</span></p>
+                                </div>
+                                <p>{comment.comment}</p>
+                            </div>
+                        )
+                    }) : <div></div>}
                     <p>Post comment goes here.</p>
                 </div>
             </div>
+            {/*{commentsForThisPost ? <CommentsTile className={commentsVisible ? styles.commentsSectionVisible : styles.commentsSectionInvisible} id={`${feedResult.id}commentSection`} feedResult={feedResult} comments={commentsForThisPost} commentsVisible={commentsVisible} /> : <div></div>}*/}
         </div>
     )
 }

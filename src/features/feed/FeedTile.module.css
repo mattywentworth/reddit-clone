@@ -243,8 +243,9 @@
     height: 100%;
     background-color: transparent;
     backdrop-filter: blur(3px);
-    
     z-index: 3;
+    max-height: 80vh;
+    overflow: scroll;
 }
 
 .commentsSection {
@@ -255,11 +256,22 @@
     padding-bottom: 1rem;
     border-radius: 20px;
     margin: 0 auto;
-    overflow: scroll;
+    /*overflow: scroll;*/
     padding: 0.75rem;
 }
 
+.commentsSectionTopRow {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-bg-main-hover);
+    border-bottom: 1px solid var(--color-border-main);
+    font-weight: 500;
+}
+
 .closeButton {
+    height: 2rem;
+    font-size: 0.75rem;
     background-color: transparent;
     border: none;
     position: relative;
@@ -271,3 +283,14 @@
     outline: 2px solid var(--color-orange-main);
 }
 
+.userIcon {
+    width: 2rem;
+    height: 2rem;
+    padding-right: 0.5rem;
+}
+
+.userName {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-secondary)
+}

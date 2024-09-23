@@ -38,6 +38,8 @@ New process:
 export const fetchComments = createAsyncThunk(
     'comments/fetchComments',
     async ({postId, postUrl} /*{ fulfillWithValue }*/) => {
+        const id = postId;
+        alert(id);
         const response = await fetch(postUrl);
         const json = await response.json();
         const hugeCommentsArray = json[1].data.children;
@@ -50,11 +52,17 @@ export const fetchComments = createAsyncThunk(
         for (let i = 0; i < 20; i++) {
             //alert(topLevelCommentsArray[0]);
             let topLevelComment = hugeCommentsArray[i].data.body;
-            topLevelCommentsArray.push(topLevelComment);
+            let authorOfTopLevelComment = hugeCommentsArray[i].data.author;
+            let createdTimeOfTopLevelComment = hugeCommentsArray[i].data.created_utc;
+            topLevelCommentsArray.push({
+                comment: topLevelComment,
+                author: authorOfTopLevelComment,
+                createdTime: createdTimeOfTopLevelComment
+            }); //original functioning line: topLevelCommentsArray.push(topLevelComment);
         }
         //alert(json[1].data.children[0].data.body);
         const testObject = {
-            postId: postId,
+            postId: id,//I don't understand why I couldn't just use postId here. Why wasn't that working? Thought that was the point of destructuring an object.
             comments: topLevelCommentsArray //rouote to coomments array: json[1].data.children.data.replies.data.children
         };
         //alert(testObject.postIdTest);
