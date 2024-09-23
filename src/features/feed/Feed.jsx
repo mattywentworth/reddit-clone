@@ -37,9 +37,11 @@ export const Feed = () => {
 
     //const dataTest = feedResults[0].data.after;
     
+    //Change the loading image to an error image and find a better loading image. The reddit expletive guy makes more sense for an error
     if (isLoadingFeed || feedResults.length === 0) {
         return (
             <div className={styles.feed} id='feed-error-div'>{/* Need to find out why the animation css isn't working */}
+                <p>Loading feed. This might take a while...</p>
                 <img className={styles.errorImage} src='https://cdn.theatlantic.com/thumbor/7ehJ3wB43COlHP49_ZwAefSxS7g=/0x0:2000x1125/960x540/media/img/mt/2020/06/0620_Katie_Reddit_alt3/original.png'></img>
             </div>
         )

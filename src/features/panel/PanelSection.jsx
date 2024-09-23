@@ -64,6 +64,7 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
     if (popularSubs.length === 0 || loading) {//Why is popularSubsArray being calculated so slowly that it doesn't render the .map, even though the data is there?
         return (
             <div className={styles.panelLoading}>
+                <p>Loading popular subreddits...</p>
                 <img src='https://cdn.theatlantic.com/thumbor/7ehJ3wB43COlHP49_ZwAefSxS7g=/0x0:2000x1125/960x540/media/img/mt/2020/06/0620_Katie_Reddit_alt3/original.png'></img>
             </div>
         )

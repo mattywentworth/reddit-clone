@@ -1,6 +1,9 @@
-.panelLoading > img {
-    border-radius: 50px;
+.panelError {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 100px;
     width: 100px;
+    margin: 4rem;
 }
 
 .rowOne {
@@ -47,3 +50,4 @@
 .arrowDownDisappear {
     display: none;
 }
+

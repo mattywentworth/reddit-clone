@@ -266,7 +266,7 @@ export const FeedTile = ( {feedResult} ) => {
                 
             </div>
             <div className={commentsVisible ? styles.commentsSectionVisible : styles.commentsSectionInvisible} id={`${feedResult.id}commentSection`}>
-                <div className={styles.commentsSection} > {/* Need to create and import a Comments component instead?*/}
+                <div className={styles.commentsSection} > {/* Need to create and import a Comments component instead? YES, and this will enable you to have the proper loading/error renders*/}
                     <button onClick={testXCommentsSection} className={styles.closeButton}>❌</button>
                     <div className={styles.feedTileRowOne}>
                         <div className={styles.subredditContainer}>
