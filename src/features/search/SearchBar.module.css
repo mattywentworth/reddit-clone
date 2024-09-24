@@ -1,5 +1,9 @@
+.form {
+    margin-right: -46px;
+}
+
 .input {
-    width: 35rem;
+    width: 25rem;
     height: 2.5rem; /* Come up with a more systematic way of making this match the button to the right */
     font-size: 1rem;
     border-radius: 3rem;
@@ -38,4 +42,11 @@
 
 .searchIcon {
     width: 1rem;
+}
+
+
+@media (max-width: 1000px) {
+    .input {
+        width: 25rem;
+    }
 }

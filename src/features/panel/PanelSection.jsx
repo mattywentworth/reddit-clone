@@ -74,7 +74,7 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
 
 
     return (
-        <div key='updateThisTest' id='anotherTest' >
+        <div key='updateThisTest' id='anotherTest' className={styles.panelSection}>
             {/*<p>{popularSubs}</p>*/}
             <div className={styles.rowOne} onClick={handleCollapseClick}>
                 <h5>{popularSubs[0]}</h5>

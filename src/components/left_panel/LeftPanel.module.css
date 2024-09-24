@@ -7,3 +7,112 @@
     background-color: var(--color-bg-main);
     overflow: scroll;
 }
+
+/*.miniPanel {
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-wrap: nowrap;
+    writing-mode: vertical-rl;
+    margin: 0;
+}*/
+
+.miniContainer {
+    display: none;
+    margin: 0 auto;
+    position: absolute; /* change to oabsolute*/
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    color: white;
+    z-index: 4;
+    border-top: 2px solid var(--color-border-main);
+    border-bottom: 2px solid var(--color-border-main);
+    border-right: 2px solid var(--color-border-main);
+    padding: 1rem;
+    margin: 0;
+    border-radius: 0 20px 20px 0;
+}
+
+.miniContainer:hover {
+    background-color: var(--color-orange-main);
+    border-top: 2px solid var(--color-orange-main);
+    border-bottom: 2px solid var(--color-orange-main);
+    border-right: 2px solid var(--color-orange-main);
+}
+
+
+
+@media (max-width: 1000px) {
+    .panelContainer {
+        display: none;
+        /*width: 3rem;
+        height: 20vh;
+        position: absolute;
+        top: 40vh;
+        left: 0;
+        border-top: 2px solid var(--color-border-main);
+        border-bottom: 2px solid var(--color-border-main);
+        z-index: 2;*/
+    }
+
+    .miniContainer {
+        display: inline-block;
+    }
+
+    .miniContainer p {
+        margin: 0;
+    }
+
+    /*.miniPanel {
+        display: inline;
+        /*transform-origin: 0, 0;
+        transform: rotate(90deg);*/
+        /*text-wrap: nowrap;*/
+    /*}*/
+
+    .miniPanel:before {
+        content: 'Popular Subs'
+    }
+
+    .panelContainerExpanded {
+        position: absolute;
+        /*display: block;*/
+        z-index: 3;
+        width: 20rem;
+        border-right: 2px solid var(--color-border-main);
+        height: 90vh; /* This isn't correct. Need to figure out if there's a better "programmatic" way to subtract the height of the header*/
+        /*position: relative;*/
+        top: 10vh;
+        background-color: var(--color-bg-main);
+        overflow: scroll;
+    }
+
+    .miniContainerX {
+        display: inline-block;
+        margin: 0 auto;
+        position: absolute; /* change to oabsolute*/
+        top: 50%;
+        left: 20rem;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+        color: white;
+        z-index: 4;
+        border-top: 2px solid var(--color-border-main);
+        border-bottom: 2px solid var(--color-border-main);
+        border-right: 2px solid var(--color-border-main);
+        padding: 1rem;
+        margin: 0;
+        border-radius: 0 20px 20px 0;
+    }
+    
+    .miniContainerX:hover {
+        background-color: var(--color-orange-main);
+        border-top: 2px solid var(--color-orange-main);
+        border-bottom: 2px solid var(--color-orange-main);
+        border-right: 2px solid var(--color-orange-main);
+    }
+    
+}

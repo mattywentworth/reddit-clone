@@ -17,5 +17,5 @@ export const HeaderButton = () => {
 
     */}
 
-    return <button id='header-button' className={styles.button} >Inspire Me Please</button>
+    return <a id='header-button' href='https://www.youtube.com/watch?v=k5NlwiSPXao' target="_blank" className={styles.button} >Inspire Me</a>
 };

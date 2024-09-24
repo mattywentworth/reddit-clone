@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './LeftPanel.module.css';
 import { PanelSection } from '../../features/panel/PanelSection';
 import { fetchPopularSubs, selectPopularSubs, isLoading, hasError, selectTest } from '../../features/panel/panelSlice';
@@ -33,12 +33,29 @@ export const LeftPanel = () => {
     }
     */
 
+    const [leftPanelVisible, setLeftPanelVisible] = useState(false);
+
+    //I want to write a click handler that expands the left panel and situates the button to the right of it
+    //exposing the left panel is easy.
+    
+    const handleLeftPanelButtonClick = () => {
+        //e.preventDefault();
+        //alert(leftPanelVisible);
+        leftPanelVisible ? setLeftPanelVisible(false) : setLeftPanelVisible(true);
+        //alert(leftPanelVisible);
+    }
+    
+
+    /*Create another div at the same level as the main div here. Have a p element inside it, and rotate the entire div */
     return (
-        <div className={styles.panelContainer}>
-            {/*<p>{test[0]}</p>*/}
-            {/*<p>{popularSubs[0].data.display_name_prefixed}</p>*/}
-            <PanelSection /*popularSubs={popularSubs}*/ />
-            {/*<PanelSection />*/}
+        <div>
+            <div className={leftPanelVisible ? styles.panelContainer : styles.panelContainerExpanded}>
+                {/*<p>{test[0]}</p>*/}
+                {/*<p>{popularSubs[0].data.display_name_prefixed}</p>*/}
+                <PanelSection /*popularSubs={popularSubs}*/ />
+                {/*<PanelSection />*/}
+            </div>
+            <button className={leftPanelVisible ? styles.miniContainer : styles.miniContainerX} onClick={handleLeftPanelButtonClick}><span>▶︎</span>Expand Popular Subs<span>▶︎</span></button>
         </div>
     );
 };

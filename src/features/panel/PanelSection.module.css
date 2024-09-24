@@ -51,3 +51,8 @@
     display: none;
 }
 
+@media (max-width: 1000px) {
+    .panelSection {
+        display: none;
+    }
+}

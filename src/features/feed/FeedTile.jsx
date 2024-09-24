@@ -322,7 +322,7 @@ export const FeedTile = ( {feedResult} ) => {
                     {loadingComments ? <p className={styles.commentsLoading}>Loading comments...</p> : <div></div>}
                     {commentsForThisPost ? commentsForThisPost.map((comment) => {
                         return (
-                            <div className={styles.commentContainer}>
+                            <div className={styles.commentContainer} key={{/*NEED TO INSERT A COMMENT ID HERE */}}>
                                 <div className={styles.commentTopRow}>
                                     <img className={styles.userIcon} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
                                     <p><span className={styles.userName}>{comment.author}</span><span className={styles.timeSincePost}> • *Need to fix time calculation* {/*{commentTime}*/}</span></p>
