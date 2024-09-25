@@ -78,7 +78,8 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
             {/*<p>{popularSubs}</p>*/}
             <div className={styles.rowOne} onClick={handleCollapseClick}>
                 <h5>{popularSubs[0]}</h5>
-                <i class={arrowUp ? "fa-solid fa-caret-up" : "fa-solid fa-caret-down"}  id='popSubsArrow' className={arrowUp ? styles.arrowUpFlip : styles.arrowDownFlip}></i>
+                <p id='popSubsArrow' className={arrowUp ? styles.arrowUpFlip : styles.arrowDownFlip}>{arrowUp ? '▲' : '▼'}</p>
+                {/*<i class={arrowUp ? "fa-solid fa-caret-up" : "fa-solid fa-caret-down"}  id='popSubsArrow' className={arrowUp ? styles.arrowUpFlip : styles.arrowDownFlip}></i>*/}
             </div>
             <div id="testTargetForCollapse" className={arrowUp ? styles.arrowUpVisible : styles.arrowDownDisappear}>
                 {popularSubsArray.map(popularSub => {

@@ -6,12 +6,14 @@ import './App.css'
 //New stuff not in orginal build
 import { Root } from './components/Root'
 import { Feed } from './features/feed/Feed';
+import { LeftPanel } from './components/left_panel/LeftPanel';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom';
 
+//<Root index element={<LeftPanel />} />
 //Not in original build
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Root/>}>
-    <Route index element={<Feed />} />
+    <Route index  element={<Feed />} />
   </Route>
 ));
 

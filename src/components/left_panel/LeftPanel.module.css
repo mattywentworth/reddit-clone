@@ -73,21 +73,29 @@
         /*text-wrap: nowrap;*/
     /*}*/
 
-    .miniPanel:before {
+    /*.miniPanel:before {
         content: 'Popular Subs'
-    }
+    }*/
 
     .panelContainerExpanded {
-        position: absolute;
-        /*display: block;*/
+        /*position: absolute;
+        left: 0;
         z-index: 3;
         width: 20rem;
         border-right: 2px solid var(--color-border-main);
-        height: 90vh; /* This isn't correct. Need to figure out if there's a better "programmatic" way to subtract the height of the header*/
+        height: 90vh;*/ /* This isn't correct. Need to figure out if there's a better "programmatic" way to subtract the height of the header*/
         /*position: relative;*/
+        /*top: 10vh;
+        background-color: var(--color-bg-main);
+        overflow: scroll;*/
+        width: 20rem;
+        border-right: 2px solid var(--color-border-main);
+        height: 90vh; /* This isn't correct. Need to figure out if there's a better "programmatic" way to subtract the height of the header*/
+        position: absolute;
         top: 10vh;
         background-color: var(--color-bg-main);
         overflow: scroll;
+        z-index: 1;
     }
 
     .miniContainerX {
@@ -115,4 +123,10 @@
         border-right: 2px solid var(--color-orange-main);
     }
     
+}
+
+@media (max-width: 540px) {
+    .miniContainer, .miniContainerX {
+        padding: 0.5rem;
+    }
 }

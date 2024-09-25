@@ -50,3 +50,15 @@
         width: 25rem;
     }
 }
+
+@media (max-width: 750px) {
+    .form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 540px) {
+    .input {
+        width: 15rem;
+    }
+}

@@ -13,3 +13,9 @@
     padding-right: 1rem;
     
 }
+
+@media (max-width: 750px) {
+    .header {
+        justify-content:flex-start;
+    }
+}

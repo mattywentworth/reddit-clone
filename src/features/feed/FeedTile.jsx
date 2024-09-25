@@ -106,9 +106,8 @@ export const FeedTile = ( {feedResult} ) => {
 
     const handleSubredditClick = () => {
         const subredditExt = feedResult.subreddit_name_prefixed;
-        const subUrl = `reddit.com/${subredditExt}.json`;
-        alert('test');
-        dispatch(fetchFeed('reddit.com/r/NoStupidQuestions/.json')); //reddit.com${popularSub.data.url}.json
+        const subUrl = `https://www.reddit.com/${subredditExt}.json`;
+        dispatch(fetchFeed(subUrl)); //reddit.com${popularSub.data.url}.json
     }
 
     const permalink = feedResult.permalink;
@@ -263,10 +262,10 @@ export const FeedTile = ( {feedResult} ) => {
         <div className={styles.feedTileDiv} key={feedResult.id}>
             <div className={styles.feedTileContainer}>
                 <div className={styles.feedTileRowOne}>
-                    <div className={styles.subredditContainer} onClick={handleSubredditClick}>
+                    <div className={styles.subredditContainer} >
                         {/* Placeholder for subreddit icon */}
                         <img src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
-                        <p><span className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • {postTime}</span></p>
+                        <p><span onClick={handleSubredditClick} className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • {postTime}</span></p>
                     </div>
                     
                     <button className={styles.joinButton}>Join</button>

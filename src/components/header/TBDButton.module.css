@@ -17,3 +17,9 @@
 .button:active {
     border: 2px solid white; /* Border looks blue. Something in App.css or index.css? */
 }
+
+@media (max-width: 750px) {
+    .button {
+        display: none;
+    }
+}

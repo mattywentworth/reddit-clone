@@ -35,6 +35,9 @@ export const LeftPanel = () => {
 
     const [leftPanelVisible, setLeftPanelVisible] = useState(false);
 
+    const windowWidth = window.screen.width;
+   
+
     //I want to write a click handler that expands the left panel and situates the button to the right of it
     //exposing the left panel is easy.
     
@@ -45,6 +48,15 @@ export const LeftPanel = () => {
         //alert(leftPanelVisible);
     }
     
+    let buttonContent;
+    leftPanelVisible ? buttonContent = '▶︎Expand Popular Subs▶︎' : buttonContent = '◀︎Hide Popular Subs◀︎';
+    /*if (!leftPanelVisible) {
+        return (
+            ▶︎Expand Popular Subs▶︎
+        )
+    }*/
+    
+    //{!leftPanelVisible ? buttonContent = (<span>'▶︎'</span>'Expand Popular Subs'<span>'▶︎'</span>) : buttonContent = (<span>'◀︎'</span>'Hide Popular Subs'<span>'◀︎'</span>);}
 
     /*Create another div at the same level as the main div here. Have a p element inside it, and rotate the entire div */
     return (
@@ -55,7 +67,7 @@ export const LeftPanel = () => {
                 <PanelSection /*popularSubs={popularSubs}*/ />
                 {/*<PanelSection />*/}
             </div>
-            <button className={leftPanelVisible ? styles.miniContainer : styles.miniContainerX} onClick={handleLeftPanelButtonClick}><span>▶︎</span>Expand Popular Subs<span>▶︎</span></button>
+            <button className={leftPanelVisible ? styles.miniContainer : styles.miniContainerX} onClick={handleLeftPanelButtonClick}>{buttonContent}</button>
         </div>
     );
 };

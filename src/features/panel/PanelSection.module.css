@@ -33,15 +33,14 @@
     display: inline-block;
 }
 
-/*
+
 .arrowUpFlip {
-    transform: rotate(0deg);
+    color: white;
 }
 
 .arrowDownFlip {
-    transform: rotate(180deg);
+    color: white;
 }
-*/
 
 .arrowUpVisible {
     display: block;
@@ -52,7 +51,7 @@
 }
 
 @media (max-width: 1000px) {
-    .panelSection {
+    /*.panelSection {
         display: none;
-    }
+    }*/
 }

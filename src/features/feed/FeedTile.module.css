@@ -163,7 +163,7 @@
     background-color: var(--color-bg-tertiary-hover);
 }*/
 
-.shareInfo:hover, .commentInfo:hover {
+.shareInfo:hover, .commentInfo:hover, .voteInfo:hover {
     background-color: var(--color-bg-tertiary-hover);
 }
 
