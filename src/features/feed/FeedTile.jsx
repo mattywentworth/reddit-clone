@@ -90,9 +90,60 @@ export const FeedTile = ( {feedResult} ) => {
 
     let selectedMedia;
     const imageStyles = styles.feedTileRowThreeImage;
+    const rowThreeStylesVisualMedia = '';
+    const rowThreeStylesText = '';
+    //const textStyles = styles.feedTileRowThreeText;
+    /*
+    thumbnail values = self, a url (beginning with a. or b. or external-preview), default, spoiler. external-preview
+    //post has a key that is secure_media.reddit_video object. Defauult also appears to have the secure_media object SOMETIMES
+    //and sometimes comes with a preview.images object (like for a news article that's linked and has an image auto-populated)
+    //BUT these are cdn images I can't access, so still need to use the thumbnail.
+
+
+    if (feedResult.thumbnail === 'self') {
+        if (feedResult.selftext !== "" && feedRestult.thumbnail === 'self') {
+            selectedMedia = <p className={styles.feedTileRowThreeText}>{feedResult.selftext}</p>;
+        } else {
+            selectedMedia = <div></div>;
+        }
+    } else if (feedResult.secure_media) {
+        if (feedResult.secure_media.reddit_video) {
+            selectedMedia = <video controls style={{height: '500px'}} className={imageStyles}><source src={feedResult.secure_media.reddit_video.fallback_url} type='video/mp4'></source></video>;    
+        } else if (feedResult.secure_media.reddit_video) {
+            selectedMedia = <iframe src='https://www.youtube.com/embed/79P5PAacl9s' style={{height: '500px}'}} className={imageStyles}></iframe>
+        }        
+    } else if (feedResult.thumbnail) {
+        if (feedResult.selftext === "") {
+            if (feedResult.url_overridden_by_dest.includes('.jpeg' || '.png')) {
+                selectedMedia = <img src={feedResult.url_overriden_by_dest} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
+            } else {
+                selectedMedia = <img src={feedResult.thumbnail} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
+            }
+        } else {
+            if (feedResult.url_overridden_by_dest.includes('.jpeg' || '.png')) {
+                selectedMedia = 
+                    <div>
+                        <img src={feedResult.url_overriden_by_dest} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
+                        <p className={styles.feedTileRowThreeText}>{feedResult.selftext}</p>
+                    </div>
+            } else {
+                selectedMedia = 
+                    <div>
+                        <img src={feedResult.thumbnail} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
+                        <p className={styles.feedTileRowThreeText}>{feedResult.selftext}</p>
+                    </div>
+            }
+        }
+    }
+USE url_overridden_by_dest whenever possible if it coontains .jpeg or .png (unless this value starts with WHAT??!! higher quality media.
+    //so do if urloverriddenbydest includes .jpeg or .png do X, if not do Y and use the low qual thumbnail
+    }
+    
+    */
+    
     if (feedResult.secure_media === null) {
-        if(feedResult.thumbnail === 'self') {
-            selectedMedia = <p>{feedResult.selftext}</p>;
+        if(feedResult.thumbnail === 'self' && feedResult.selftext !== "") {
+            selectedMedia = <p className={styles.feedTileRowThreeText}>{feedResult.selftext}</p>;
         } else {
             selectedMedia = <img src={feedResult.thumbnail} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
         }
@@ -271,7 +322,7 @@ export const FeedTile = ( {feedResult} ) => {
                     <button className={styles.joinButton}>Join</button>
                 </div>
                 <h4 className={styles.feedTileRowTwo}>{`${feedResult.title}`}</h4> {/*Should this be a header element, a p, a div, something else?*/}
-                <div className={styles.feedTileRowThree}> {/*style={{backgroundImage: `url(${images.malibuTestWide})`}*/}
+                <div className={feedResult.selftext !== "" ? styles.feedTileRowThreeVisualMediaContainer : styles.feedTileRowThreeTextContainer}> {/*style={{backgroundImage: `url(${images.malibuTestWide})`}*/}
                     {/*<p>Post Media - text, image, video, etc</p> */}{/* Will need to come up with a programmatic way of handling the type of media*/}
                     {/*<img className={styles.feedTileRowThreeImage} src={images.malibuTestWide}></img>*/}
                     {/*{feedResult.thumbnail === 'self' ? <p></p> : <img className={styles.feedTileRowThreeImage} src={feedResult.thumbnail} alt={feedResult.title} style={{height: '300px'}}></img>}*/}
