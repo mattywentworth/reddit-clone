@@ -43,6 +43,19 @@
     border-right: 2px solid var(--color-orange-main);
 }
 
+/*Delete if can't fix css*/
+/*.miniContainerX { /*This feels really hacky*/
+
+.panelContainerExpanded {
+    width: 20rem;
+    border-right: 2px solid var(--color-border-main);
+    height: 90vh; /* This isn't correct. Need to figure out if there's a better "programmatic" way to subtract the height of the header*/
+    position: relative;
+    top: 10vh;
+    background-color: var(--color-bg-main);
+    overflow: scroll;
+}
+
 
 
 @media (max-width: 1000px) {
@@ -64,6 +77,10 @@
 
     .miniContainer p {
         margin: 0;
+    }
+
+    .miniContainerX { /*This feels really hacky*/
+        display: none;
     }
 
     /*.miniPanel {

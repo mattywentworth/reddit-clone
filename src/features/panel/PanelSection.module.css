@@ -1,3 +1,19 @@
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.panelLoading img {
+    width: 50px;
+    border-radius: 50%;
+    animation: rotate 2s infinite linear;
+}
+
 .panelError {
     object-fit: cover;
     border-radius: 50%;

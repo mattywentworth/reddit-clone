@@ -65,11 +65,16 @@ export const PanelSection = ( /*{popularSubs}*/ ) => {
         return (
             <div className={styles.panelLoading}>
                 <p>Loading popular subreddits...</p>
-                <img src='https://cdn.theatlantic.com/thumbor/7ehJ3wB43COlHP49_ZwAefSxS7g=/0x0:2000x1125/960x540/media/img/mt/2020/06/0620_Katie_Reddit_alt3/original.png'></img>
+                <img src='https://pbs.twimg.com/profile_images/1729909787029078016/dBjB3Fnr_400x400.jpg'></img>
             </div>
         )
     } else if (error) {
-        return <p>Error</p>
+        return (
+            <div className={styles.panelError}>
+                <p>SOME ERROR MESSAGE</p>
+                <img src='https://cdn.theatlantic.com/thumbor/7ehJ3wB43COlHP49_ZwAefSxS7g=/0x0:2000x1125/960x540/media/img/mt/2020/06/0620_Katie_Reddit_alt3/original.png'></img>
+            </div>
+        )
     }
 
 

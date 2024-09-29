@@ -97,11 +97,13 @@ export const FeedTile = ( {feedResult} ) => {
     thumbnail values = self, a url (beginning with a. or b. or external-preview), default, spoiler. external-preview
     //post has a key that is secure_media.reddit_video object. Defauult also appears to have the secure_media object SOMETIMES
     //and sometimes comes with a preview.images object (like for a news article that's linked and has an image auto-populated)
-    //BUT these are cdn images I can't access, so still need to use the thumbnail.
-
+    //BUT these are cdn images I can't access, so still need to use the thumbnail.*/
+    /*const hiQualityImage = feedResult.url_overridden_by_dest;
+    const hQCJpegAvail = hiQualityImage.includes('.jpeg');
+    const hQCPngAvail = hiQualityImage.indexOf('.png');
 
     if (feedResult.thumbnail === 'self') {
-        if (feedResult.selftext !== "" && feedRestult.thumbnail === 'self') {
+        if (feedResult.selftext !== "" && feedResult.thumbnail === 'self') {
             selectedMedia = <p className={styles.feedTileRowThreeText}>{feedResult.selftext}</p>;
         } else {
             selectedMedia = <div></div>;
@@ -109,21 +111,21 @@ export const FeedTile = ( {feedResult} ) => {
     } else if (feedResult.secure_media) {
         if (feedResult.secure_media.reddit_video) {
             selectedMedia = <video controls style={{height: '500px'}} className={imageStyles}><source src={feedResult.secure_media.reddit_video.fallback_url} type='video/mp4'></source></video>;    
-        } else if (feedResult.secure_media.reddit_video) {
+        } else if (feedResult.secure_media.type) {
             selectedMedia = <iframe src='https://www.youtube.com/embed/79P5PAacl9s' style={{height: '500px}'}} className={imageStyles}></iframe>
         }        
     } else if (feedResult.thumbnail) {
         if (feedResult.selftext === "") {
-            if (feedResult.url_overridden_by_dest.includes('.jpeg' || '.png')) {
-                selectedMedia = <img src={feedResult.url_overriden_by_dest} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
+            if (hQCJpegAvail || hQCPngAvail) {
+                selectedMedia = <img src={feedResult.url_overridden_by_dest} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
             } else {
                 selectedMedia = <img src={feedResult.thumbnail} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
             }
         } else {
-            if (feedResult.url_overridden_by_dest.includes('.jpeg' || '.png')) {
+            if (hQCJpegAvail || hQCPngAvail) {
                 selectedMedia = 
                     <div>
-                        <img src={feedResult.url_overriden_by_dest} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
+                        <img src={feedResult.url_overridden_by_dest} alt={feedResult.title} style={{height: '500px'}} className={imageStyles}></img>
                         <p className={styles.feedTileRowThreeText}>{feedResult.selftext}</p>
                     </div>
             } else {
@@ -134,8 +136,8 @@ export const FeedTile = ( {feedResult} ) => {
                     </div>
             }
         }
-    }
-USE url_overridden_by_dest whenever possible if it coontains .jpeg or .png (unless this value starts with WHAT??!! higher quality media.
+    }*/
+/*USE url_overridden_by_dest whenever possible if it coontains .jpeg or .png (unless this value starts with WHAT??!! higher quality media.
     //so do if urloverriddenbydest includes .jpeg or .png do X, if not do Y and use the low qual thumbnail
     }
     
@@ -312,13 +314,14 @@ USE url_overridden_by_dest whenever possible if it coontains .jpeg or .png (unle
     return (
         <div className={styles.feedTileDiv} key={feedResult.id}>
             <div className={styles.feedTileContainer}>
+                
+                {/*{feedResult.secure_media ? <p>{feedResult.secure_media.reddit_video.transcoding_status}</p> : <div>No Video</div>}*/}
                 <div className={styles.feedTileRowOne}>
                     <div className={styles.subredditContainer} >
                         {/* Placeholder for subreddit icon */}
                         <img src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>
                         <p><span onClick={handleSubredditClick} className={styles.subredditName}>{`${feedResult.subreddit_name_prefixed}`}</span><span className={styles.timeSincePost}> • {postTime}</span></p>
                     </div>
-                    
                     <button className={styles.joinButton}>Join</button>
                 </div>
                 <h4 className={styles.feedTileRowTwo}>{`${feedResult.title}`}</h4> {/*Should this be a header element, a p, a div, something else?*/}

@@ -13,6 +13,25 @@
     position: relative;
 }
 
+
+/**/
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.feedLoadingImage {
+    width: 350px;
+    border-radius: 50%;
+    margin-top: 5rem;
+    animation: rotate 2s infinite linear;
+}
+/**/
+
 #feed-error-div {
     animation: mymove 5s linear infinite;
 }
