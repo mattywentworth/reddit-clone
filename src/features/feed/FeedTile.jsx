@@ -299,7 +299,7 @@ export const FeedTile = ( {feedResult} ) => {
     
 
     const handleCommentIconClick = (e) => {
-        dispatch(fetchComments({postId: e.target.id, postUrl: `https://www.reddit.com${poppedPermalink}.json`}));
+        dispatch(fetchComments({postId: feedResult.id, postUrl: `https://www.reddit.com${poppedPermalink}.json`}));
         testHandleCommentsVis();
     };
 
@@ -347,10 +347,11 @@ export const FeedTile = ( {feedResult} ) => {
                         {/*<img className={styles.imgRight} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                     </div>
                     <div className={styles.commentInfo} onClick={handleCommentIconClick} id={feedResult.id}>{/* onClick={handleCommentIconClick}   onClick={testHandleCommentsVis} */}
-                        {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                         <i class="fa-solid fa-comment"></i>
                         <p>{postNumComments}</p>
                     </div>
+                    {/* Need to style this button */}
+                    <button onClick={handleCommentIconClick}><i class="fa-solid fa-comment"></i>  {postNumComments}</button>
                     <div className={styles.shareInfo}>
                         {/*<img className={styles.imgLeft} src='https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-neon-square-frame-clipart-png-image_6568438.png'></img>*/}
                         <i class="fa-solid fa-share"></i>

@@ -22,24 +22,27 @@
 .miniContainer {
     display: none;
     margin: 0 auto;
-    position: absolute; /* change to oabsolute*/
+    position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    writing-mode: vertical-rl;
+    left: -5.3rem; /* Not sure how to accurately calculate what this value should be */
+    transform: translateY(-50%) rotate(90deg);
+    /*transform-origin: center left;*/
+    /*writing-mode: vertical-rl;*/
+    /*float: left;*/
     color: white;
     z-index: 4;
     border-top: 2px solid var(--color-border-main);
-    border-bottom: 2px solid var(--color-border-main);
+    border-left: 2px solid var(--color-border-main);
     border-right: 2px solid var(--color-border-main);
     padding: 1rem;
     margin: 0;
-    border-radius: 0 20px 20px 0;
+    border-radius: 20px 20px 0 0;
 }
 
 .miniContainer:hover {
     background-color: var(--color-orange-main);
     border-top: 2px solid var(--color-orange-main);
-    border-bottom: 2px solid var(--color-orange-main);
+    border-left: 2px solid var(--color-orange-main);
     border-right: 2px solid var(--color-orange-main);
 }
 
@@ -120,23 +123,25 @@
         margin: 0 auto;
         position: absolute; /* change to oabsolute*/
         top: 50%;
-        left: 20rem;
-        transform: translateY(-50%);
-        writing-mode: vertical-rl;
+        left: 15.5rem;
+        height: 4rem;
+        /*left: 20rem;*/
+        transform: translateY(-50%) rotate(90deg);
+        /*writing-mode: vertical-rl;*/
         color: white;
         z-index: 4;
         border-top: 2px solid var(--color-border-main);
-        border-bottom: 2px solid var(--color-border-main);
+        border-left: 2px solid var(--color-border-main);
         border-right: 2px solid var(--color-border-main);
         padding: 1rem;
         margin: 0;
-        border-radius: 0 20px 20px 0;
+        border-radius: 20px 20px 0 0;
     }
     
     .miniContainerX:hover {
         background-color: var(--color-orange-main);
         border-top: 2px solid var(--color-orange-main);
-        border-bottom: 2px solid var(--color-orange-main);
+        border-left: 2px solid var(--color-orange-main);
         border-right: 2px solid var(--color-orange-main);
     }
     
@@ -145,5 +150,6 @@
 @media (max-width: 540px) {
     .miniContainer, .miniContainerX {
         padding: 0.5rem;
+        height: 4rem;
     }
 }

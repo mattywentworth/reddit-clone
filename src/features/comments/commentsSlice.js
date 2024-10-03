@@ -39,7 +39,7 @@ export const fetchComments = createAsyncThunk(
     'comments/fetchComments',
     async ({postId, postUrl} /*{ fulfillWithValue }*/) => {
         const id = postId;
-        alert(id);
+        //alert(id);
         const response = await fetch(postUrl);
         const json = await response.json();
         const hugeCommentsArray = json[1].data.children;

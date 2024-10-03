@@ -49,7 +49,7 @@ export const LeftPanel = () => {
     }
     
     let buttonContent;
-    leftPanelVisible ? buttonContent = '▶︎Expand Popular Subs▶︎' : buttonContent = '◀︎Hide Popular Subs◀︎';
+    leftPanelVisible ? buttonContent = '▲ Expand Popular Subs ▲' : buttonContent = '▼ Hide Popular Subs ▼';
     /*if (!leftPanelVisible) {
         return (
             ▶︎Expand Popular Subs▶︎
